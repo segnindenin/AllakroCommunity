@@ -1,0 +1,36 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+
+<div class="grid-container">
+    {% for pjt in pjts %}
+        <div class="post">
+            <h4>titre : {{ pjts.name }}</h4>
+            <h4>publication : {{ pjt.state }}</h4>
+            <h4>titre : {{ pjt.description }}</h4>
+            <h4>titre : {{ pjt.startDate }}</h4>
+            <h4>titre : {{ pjt.endDate }}</h4>
+            <h4>titre : {{ pjt.communityID }}</h4>
+        </div>
+    {% endfor %}
+    <a href="{% url 'create-project' %}"> créer un nouveau projet</a>
+</div>
+
+{% comment %} {% else %} {% endcomment %}
+
+{% if page == 'page_create_pjt' %}
+<p> fait moi voir tes merveilles </p>
+<div>
+    {% if form.errors %}
+        {{ form.errors }}
+    {% endif %}
+    <form method="POST" action="">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit" >Créer</button>
+    </form>
+</div>
+{% endif %}
+
+{% endblock content %}

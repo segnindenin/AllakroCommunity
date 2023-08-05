@@ -1,0 +1,41 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+
+{% if page == 'liste' %}
+<div class="grid-container">
+    {% for community in listeCo %}
+        <div class="post">
+                <h4>titre : {{ community.name }}</h4>
+        </div>
+    {% endfor %}
+    <h1>les offres d'emplois</h1>
+    {% for offre in listeof %}
+        <div class="post">
+                <h4>titre : {{ offre.titre }}</h4>
+                <h4>titre : {{ offre.description }}</h4>
+                <h4>titre : {{ offre.nbre_person }}</h4>
+                <h4>titre : {{ offre.Diplome_Requirement }}</h4>
+        </div>
+    {% endfor %}
+    <a href="{% url 'job-offer' %}">Lancer un nouvel appel d'offre.</a>
+</div>
+
+{% else %}
+
+<div>
+    {% if form.errors %}
+        {{ form.errors }}
+    {% endif %}
+    <form method="POST" action="">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit" >Créer</button>
+    </form>
+
+    <a href="{% url 'buisness-space' %}?categorie=WorkCommunity">revenir</a>
+</div>
+{% endif %}
+
+{% endblock content %}

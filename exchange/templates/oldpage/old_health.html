@@ -1,0 +1,19 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<h1> Bienvenue <h1>
+
+    <a href="{% url 'rom-health' %}" class="">
+        <h1>Lister les consultations</h1>
+    </a>
+
+    <a href="{% url 'consultation-health' %}" class="">
+        <h1>Enregistrer une consultation</h1>
+    </a>
+
+    <a href="{% url 'census' %}" class="">
+        <h1>Faire un recensement</h1>
+    </a>
+
+{% endblock %}

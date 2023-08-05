@@ -1,0 +1,215 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+    <!-- Spinner Start -->
+    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" role="status"></div>
+    </div>
+    <!-- Spinner End -->
+
+
+    <!-- Page Header Start -->
+    <div class="container-fluid page-header mb-5 wow fadeIn" data-wow-delay="0.1s">
+        <div class="container text-center">
+            <h1 class="display-4 text-white animated slideInDown mb-4">Contact Us</h1>
+            <nav aria-label="breadcrumb animated slideInDown">
+                <ol class="breadcrumb justify-content-center mb-0">
+                    <li class="breadcrumb-item"><a class="text-white" href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a class="text-white" href="#">Pages</a></li>
+                    <li class="breadcrumb-item text-primary active" aria-current="page">Contact Us</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    <!-- Page Header End -->
+
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+          <li{% if message.tags %} class="text-danger"{% endif %}>{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+
+    <!-- Contact Start -->
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
+                    <div class="d-inline-block rounded-pill bg-secondary text-primary py-1 px-3 mb-3">Contact Us</div>
+                    <h1 class="display-6 mb-5">If You Have Any Query, Please Contact Us</h1>
+                    <p class="mb-4">The contact form is currently inactive. Get a functional and working contact form with Ajax & PHP in a few minutes. Just copy and paste the files, add a little code and you're done. <a href="https://htmlcodex.com/contact-form">Download Now</a>.</p>
+                    <form class="form" action="" method="POST">
+                        {% csrf_token %}
+                        <div class="row g-3">
+
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <select class="form-select" name="type_recensement" placeholder="Type Recensement">
+                                        {% for value, label in choix_census %}
+                                            <option value="{{ value }}" >{{ label }}</option>
+                                        {% endfor %}
+                                    </select>
+                                    <label for="name">Type Recensement</label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" name="firstname" class="form-control" placeholder="firstname">
+                                    <label for="name">firstname</label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" name="lastname" class="form-control" placeholder="lastname">
+                                    <label for="name">lastname</label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <select class="form-select" name="nationality" placeholder="nationalité">
+                                        {% for value, label in choix_nationality %}
+                                            <option value="{{ value }}" >{{ label }}</option>
+                                        {% endfor %}
+                                    </select>
+                                    <label for="name">nationalité</label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <select class="form-select" name="type_piece" placeholder="Type piece">
+                                        {% for value, label in choix_piece %}
+                                            <option value="{{ value }}" >{{ label }}</option>
+                                        {% endfor %}
+                                    </select>
+                                    <label for="name">Type piece</label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" name="piece_number" class="form-control" placeholder="numero de votre pièce">
+                                    <label for="name">numero de votre pièce</label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <select class="form-select" name="marital_status" placeholder="satut">
+                                        {% for value, label in choix_marital %}
+                                            <option value="{{ value }}" >{{ label }}</option>
+                                        {% endfor %}
+                                    </select>
+                                    <label for="name">satut</label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" name="contact" class="form-control" placeholder="contact">
+                                    <label for="name">Your contact</label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <select class="form-select" name="level_studies" placeholder="niveau d'étude">
+                                        {% for value, label in choix_studies %}
+                                            <option value="{{ value }}" >{{ label }}</option>
+                                        {% endfor %}
+                                    </select>
+                                    <label for="name">niveau d'étude</label>
+                                </div>
+                            </div>
+
+                            <input type="hidden" name="read_ability" value="False">
+                            <div class="col-md-6">
+                                <div class="form-check">
+                                    <input type="checkbox" id="active" name="read_ability" class="form-check-input" value="True">
+                                    <label for="active" class="form-check-label">savez-vous lire ?</label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="date" id="birth_date" name="birthdate" class="form-control">
+                                    <label for="birth_date" class="form-label">Date de naissance:</label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="date" id="birth_date" name="neighborhoodmove" class="form-control">
+                                    <label for="birth_date" class="form-label">Date de deplacement:</label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="date" id="birth_date" name="deathdate" class="form-control">
+                                    <label for="birth_date" class="form-label">Date de decès:</label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="date" id="birth_date" name="installation_date" class="form-control">
+                                    <label for="birth_date" class="form-label">Date de amenagement:</label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <select multiple class="form-control" name="work_name" placeholder="work name">
+                                        {% for work in works %}
+                                            <option value="{{ work.id }}" >{{ work.work_name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                    <label for="name">work name</label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <select class="form-select" name="work_space" placeholder="work space">
+                                        {% for value, label in work_space %}
+                                            <option value="{{ value }}" >{{ label }}</option>
+                                        {% endfor %}
+                                    </select>
+                                    <label for="name">work space</label>
+                                </div>
+                            </div>
+
+                            {% comment %} {% endfor %} {% endcomment %}
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary py-2 px-3 me-3">
+                                    Enregistrer
+                                    <div class="d-inline-flex btn-sm-square bg-white text-primary rounded-circle ms-2">
+                                        <i class="fa fa-arrow-right"></i>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s" style="min-height: 450px;">
+                    <div class="position-relative rounded overflow-hidden h-100">
+                        {% comment %} <iframe class="position-relative w-100 h-100"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3001156.4288297426!2d-78.01371936852176!3d42.72876761954724!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4ccc4bf0f123a5a9%3A0xddcfc6c1de189567!2sNew%20York%2C%20USA!5e0!3m2!1sen!2sbd!4v1603794290143!5m2!1sen!2sbd"
+                        frameborder="0" style="min-height: 450px; border:0;" allowfullscreen="" aria-hidden="false"
+                        tabindex="0"></iframe> {% endcomment %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Contact End -->
+
+{% endblock %}
