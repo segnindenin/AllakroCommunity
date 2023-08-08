@@ -2,21 +2,23 @@ from django.contrib import admin
 
 # Register your models here.
 
-from exchange.models import Habitant, Acteur, Communauty, Activity, Projet, ReferentielMetier, joboffer, Postulation, CarnetSante
+from . import models
 
 class HabitantAdmin(admin.ModelAdmin):
     list_display = ('id', 'firstname', 'lastname', 'nationality',
     'contact')
     
-admin.site.register(Habitant, HabitantAdmin)
-admin.site.register(Acteur)
-admin.site.register(Activity)
-admin.site.register(CarnetSante)
-admin.site.register(ReferentielMetier)
-admin.site.register(Communauty)
-admin.site.register(joboffer)
-admin.site.register(Postulation)
-admin.site.register(Projet)
+admin.site.register(models.Habitant, HabitantAdmin)
+admin.site.register(models.Acteur)
+admin.site.register(models.Activity)
+admin.site.register(models.CarnetSante)
+admin.site.register(models.ReferentielMetier)
+admin.site.register(models.Communauty)
+admin.site.register(models.joboffer)
+admin.site.register(models.Postulation)
+admin.site.register(models.Projet)
+admin.site.register(models.Service)
+admin.site.register(models.Recensement)
 
 
 

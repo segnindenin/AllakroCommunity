@@ -3,7 +3,6 @@ from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
 
-
 lieux = [
     ('Entre_Village', 'Entre du Village'),
     ('Sortie_Village', 'Sortie du Village'),
@@ -11,11 +10,11 @@ lieux = [
     ('Centre_Village', 'Centre du Village'),
     ]
 recensement = [
-    ('Inscription', 'Inscription'),
-    ('Amenagement', 'Amenagement'),
-    ('Demenagement', 'Sortie du Village'),
-    ('Naissance', 'Naissance'),
-    ('Décès', 'Décès'),
+    ('inscription', 'inscription'),
+    ('amenagement', 'amenagement'),
+    ('demenagement', 'demenagement'),
+    ('naissance', 'naissance'),
+    ('deces', 'deces'),
     ]
 metier = [
     ('Mecanicien', 'Mecanicien'),
@@ -109,6 +108,47 @@ class Acteur(AbstractUser):
         return f'{self.username}'
 
 
+class Recensement(models.Model):
+    type_recensement = models.CharField(choices=recensement, max_length=20)
+    fullname = models.CharField(max_length=50, null=True)
+    father_fullname = models.CharField(max_length=50, null=True)
+    mother_fullname = models.CharField(max_length=50, null=True)
+    sexe = models.CharField(max_length=20)
+    work_name = models.CharField(max_length=20, null=True)
+    birth_date = models.DateField(null=True, blank=True)
+    event_date = models.DateField(null=True, blank=True)
+    event_space = models.CharField(max_length=50, blank=True)
+    personal_home = models.CharField(max_length=50, blank=True)
+    statut_recensement = models.CharField(max_length=20, 
+    choices=[
+        ('validated', 'validated'),
+        ('refused', 'refused'),
+        ('waiting', 'waiting'),
+        ], 
+        blank=True)
+    def __str__(self):
+        return f'{self.id} {self.type_recensement} {self.fullname}'
+
+
+class Service(models.Model):
+    fullname = models.CharField(max_length=50, null=True)
+    services = models.CharField(max_length=50, null=True)
+    specificity = models.TextField(max_length=500, null=True)
+    contact = models.CharField(max_length=50, null=True)
+    photo = models.ImageField(null=True, blank=True)
+    pub_date = models.DateField(auto_now_add=True)
+    work_space = models.CharField(max_length=20, blank=True)
+    payement_code = models.CharField(max_length=20, blank=True)
+    statut_recensement = models.CharField(max_length=20, 
+    choices=[
+        ('validated', 'validated'),
+        ('refused', 'refused'),
+        ('waiting', 'waiting'),
+        ],
+        blank=True)
+    def __str__(self):
+        return f'{self.id} {self.fullname} {self.services}'
+
 class Communauty(models.Model):
     name = models.CharField(max_length=20)
     categorie = models.CharField(max_length=20, choices=categories)
@@ -148,14 +188,6 @@ class joboffer(models.Model):
     def __str__(self):
         return f'{self.titre}'
 
-class Service(models.Model):
-    firstname = models.CharField(max_length=50, null=True)
-    lastname = models.CharField(max_length=50, null=True)
-    prestataireID = models.ForeignKey(Acteur, null=True, on_delete=models.SET_NULL, related_name='prestataireID')
-    services = models.CharField(max_length=50, null=True)
-    competence = models.CharField(max_length=50, null=True)
-    specificity = models.CharField(max_length=50, null=True)
-    photo = models.CharField(max_length=50, null=True)
 
 class Postulation(models.Model):
     postulerID = models.ForeignKey(Acteur, null=True, on_delete=models.SET_NULL, related_name='postuleur')

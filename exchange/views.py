@@ -1,7 +1,7 @@
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 from django.conf import settings
-from django.http import HttpResponse
+from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from . import models
@@ -25,7 +25,7 @@ def loginPage(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('home')  # Redirige vers la page d'accueil après la connexion
+            return redirect('home') 
         else:
             error_message = "Nom d'utilisateur ou mot de passe incorrect."
     return render(request, 'exchange/authentification/connection.html', context={'error_message': error_message})
@@ -86,9 +86,80 @@ def census(request):
         return redirect('home')
     return render(request, 'exchange/recensement/inscription.html', context)
 
-def Projects(request):
+
+def recensementPage(request):
+    page = request.GET.get('type_recensement')
+    if request.method == 'POST':
+        new_recensement = models.Recensement.objects.create(
+            type_recensement=page, 
+            statut_recensement='waiting',
+            fullname=request.POST['fullname'],
+            father_fullname=request.POST['father_fullname'], 
+            mother_fullname=request.POST['mother_fullname'], 
+            sexe=request.POST['sexe'], 
+            work_name=request.POST['work_name'], 
+            birth_date=request.POST['birth_date'], 
+            event_date=request.POST['event_date'], 
+            event_space=request.POST['event_space'], 
+            personal_home=request.POST['personal_home'],)
+    return render(request, f'exchange/recensement/{page}.html')
+
+def recensementValidation(request):
+    cencus_request = models.Recensement.objects.filter(statut_recensement='waiting')
+    prestation_request = models.Service.objects.filter(statut_recensement='waiting')
+    return render(request, 'exchange/communaute/community_detail.html',
+            {
+            'cencus_request':cencus_request, 
+            'prestation_request':prestation_request,
+            })
+
+def notification(request):
+    nbre_waiting = (models.Recensement.objects.filter(statut_recensement='waiting').count() 
+                  + models.Service.objects.filter(statut_recensement='waiting').count())
+    data = {'nbre_waiting': nbre_waiting}
+    return JsonResponse(data)
+
+def prestationForm(request):
+    if request.method == 'POST':
+        new_prestation = models.Service.objects.create(
+            statut_recensement='waiting', 
+            fullname=request.POST['fullname'], 
+            services=request.POST['services'], 
+            specificity=request.POST['specificity'], 
+            contact=request.POST['contact'], 
+            work_space=request.POST['work_space'], 
+            payement_code=request.POST['payement_code'],
+            photo=request.FILES.get('photo'),
+            )
+    return render(request, 'exchange/emplois/postulate.html')
+
+def updateValidation(request, id):
+    services = request.GET.get('services')
+    if services:
+        demande = models.Service.objects.get(id=id)
+    else:
+        demande = models.Recensement.objects.get(id=id)
+    demande.statut_recensement = 'validated'
+    demande.save()
+    return redirect('recensement-validation')
+
+def newsFile(request):
+    publications = models.Recensement.objects.filter(statut_recensement='validated') 
+    prestations = models.Service.objects.filter(statut_recensement='validated') 
+    return render(request, 'exchange/communaute/actuality.html', 
+                  context={
+                    'publications': publications,
+                    'prestations':prestations})
+
+
+
+def projectsRoom(request):
     pjts = models.Projet.objects.all()
     return render(request, 'exchange/projet/projet_list.html', context={'pjts': pjts})
+
+def healthRoom(request):
+    pjts = models.Projet.objects.all()
+    return render(request, 'exchange/sante/consultation_list.html', context={'pjts': pjts})
 
 def centerInterest(request):
     publications = models.Activity.objects.all()
@@ -138,10 +209,6 @@ def createCommunity(request):
             form.save()
             return redirect('community')
     return render(request, 'exchange/community.html', context={'form': form})        
-
-def newsFile(request):
-    publications = models.Activity.objects.all()
-    return render(request, 'exchange/news_file.html', context={'publications': publications})
 
 def buisnessSpace(request):
     page = 'liste'

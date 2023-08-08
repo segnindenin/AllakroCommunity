@@ -112,6 +112,19 @@
 
     <!-- Template Javascript -->
     <script src="{% static 'js/main.js' %}"></script>
+    <script>
+        function updateSickResidentsCount() {
+            $.ajax({
+                url: {% url 'notification' %},
+                dataType: 'json',
+                success: function(data) {
+                    $('#notification').text(data.nbre_waiting);
+                }
+            });
+        }
+            updateSickResidentsCount();
+            setInterval(updateSickResidentsCount, 10000);
+    </script>
 </body>
 
 </html>

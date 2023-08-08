@@ -32,45 +32,24 @@
     <div class="container-xxl bg-light my-5 py-5">
         <div class="container py-5">
             <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
-                <div class="d-inline-block rounded-pill bg-secondary text-primary py-1 px-3 mb-3">News</div>
-                <h1 class="display-6 mb-5">Tous les news du Village</h1>
+                <div class="d-inline-block rounded-pill bg-secondary text-primary py-1 px-3 mb-3">Feature Causes</div>
+                <h1 class="display-6 mb-5">Every Child Deserves The Opportunity To Learn</h1>
             </div>
 
 
             <div class="row g-4 justify-content-center">
-                {% for publication in publications %}
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                     <div class="causes-item d-flex flex-column bg-white border-top border-5 border-primary rounded-top overflow-hidden h-100">
                         <div class="text-center p-4 pt-0">
                             <div class="d-inline-block bg-primary text-white rounded-bottom fs-5 pb-1 px-3 mb-4">
-                                <small>Evènement</small>
+                                <small>Education</small>
                             </div>
-                            <h5 class="mb-3">{{publication.type_recensement}}</h5>
-                            {% if publication.type_recensement == 'naissance' %}
-                            <p>
-                                {{publication.father_fullname}} et {{publication.mother_fullname}} ont le plaisir de vous annoncer la venue 
-                                de leur nouveau BEBE de sexe {{publication.sexe}} qui a eu lieu {{publication.event_space}}.
-                            </p>
-                            {% elif publication.type_recensement == 'deces' %}
-                            <p>
-                                {{publication.father_fullname}} et {{publication.mother_fullname}} ont la Tristesse de vous annoncer le décès de
-                                {{publication.fullname}} qui a eu lieu {{publication.event_space}}.
-                            </p>
-                            {% elif publication.type_recensement == 'amenagement' %}
-                            <p>
-                                {{publication.fullname}} tient à vous annoncer qu'il amenage à Allakro.
-                                Il habiteras précisement {{publication.event_space}}.
-                            </p>
-                            {% elif publication.type_recensement == 'demenagement'%}
-                            <p>
-                                {{publication.fullname}} tient à vous annoncer qu'il quitte d'Allakro
-                                pour {{publication.event_space}}.
-                            </p>
-                        {% endif %}
+                            <h5 class="mb-3">Education For African Children</h5>
+                            <p>Tempor erat elitr rebum at clita dolor diam ipsum sit diam amet diam et eos</p>
+                            
                         </div>
-
-                        {% comment %} <div class="position-relative mt-auto">
-                            <img class="img-fluid" src="{% static 'img/courses-1.jpg' %}" alt="">
+                        <div class="position-relative mt-auto">
+                            {% comment %} <img class="img-fluid" src="{% static 'img/courses-1.jpg' %}" alt=""> {% endcomment %}
                             <div class="causes-overlay">
                                 <a class="btn btn-outline-primary" href="">
                                     Read More
@@ -79,11 +58,9 @@
                                     </div>
                                 </a>
                             </div>
-                        </div> {% endcomment %}
-
+                        </div>
                     </div>
                 </div>
-                {% endfor %}
 
 
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
@@ -110,30 +87,25 @@
                     </div>
                 </div>
 
-                {% for prestation in prestations %}
+
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
                     <div class="causes-item d-flex flex-column bg-white border-top border-5 border-primary rounded-top overflow-hidden h-100">
                         <div class="text-center p-4 pt-0">
                             <div class="d-inline-block bg-primary text-white rounded-bottom fs-5 pb-1 px-3 mb-4">
-                                <small>{{prestation.services}}</small>
+                                <small>Healthy Life</small>
                             </div>
-                            <h5 class="mb-3">{{prestation.fullname}}</h5>
-                            <p>{{prestation.contact}}</p>
-                            <p>{{prestation.specificity}}s</p>
+                            <h5 class="mb-3">Ensure Medical Treatment</h5>
+                            <p>Tempor erat elitr rebum at clita dolor diam ipsum sit diam amet diam et eos</p>
                             
                         </div>
                         <div class="position-relative mt-auto">
-                            {% if prestation.photo %}
-                            <img class="img-fluid" src="{{ prestation.photo.url }}" alt="{{ article.title }}">
-                            {% endif %}
-                            {% comment %} <img class="img-fluid" src="{% static 'img/courses-3.jpg' %}" alt=""> {% endcomment %}
+                            <img class="img-fluid" src="{% static 'img/courses-3.jpg' %}" alt="">
                             <div class="causes-overlay">
                                 
                             </div>
                         </div>
                     </div>
                 </div>
-                {% endfor %}
 
                 
             </div>
