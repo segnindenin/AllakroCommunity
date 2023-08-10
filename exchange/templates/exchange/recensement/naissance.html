@@ -38,7 +38,7 @@
     <div class="container-xxl py-5">
         <div class="container">
             <div class="row g-5">
-                <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
+                <div class="col-lg-12 wow fadeIn" data-wow-delay="0.1s">
                     <div class="d-inline-block rounded-pill bg-secondary text-primary py-1 px-3 mb-3">Naissance</div>
                     <h1 class="display-6 mb-5">Les informations du formulaire serons public sur la page d'actualité du village</h1>
                     <p class="mb-4">indiquer le lieu d'habitation suivant les indications « africaines ». par exemple, Il habitait à côté de chez COULIBALY. Ou bien : Sa maison situe entre celle de M. KONA et M. KONE, en bas du quartier</p>
@@ -67,13 +67,25 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-6">
+                            {% comment %} <div class="col-md-6">
                                 <div class="form-floating">
                                     <select class="form-select" name="sexe" placeholder="sexe">
                                             <option value="M" >M</option>
                                             <option value="F" >F</option>
                                     </select>
                                     <label for="name">sexe</label>
+                                </div>
+                            </div> {% endcomment %}
+
+                            <div class="col-md-6">
+                                <label>Sexe: </label>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="sexe" id="inlineRadio1" value="Masculin">
+                                    <label class="form-check-label" for="inline Radio">Masculin</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="sexe" id="inlineRadio2" value="Feminin">
+                                    <label class="form-check-label" for="inline Radio">Feminin</label>
                                 </div>
                             </div>
 

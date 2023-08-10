@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'exchange',
+    'administration',
 ]
 
 AUTH_USER_MODEL = 'exchange.Acteur'

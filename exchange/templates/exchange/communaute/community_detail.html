@@ -19,8 +19,8 @@
                 <ol class="breadcrumb justify-content-center mb-0">
                     <li class="breadcrumb-item"><a class="text-white" href="#">Home</a></li>
                     <li class="breadcrumb-item"><a class="text-white" href="#">Pages</a></li>
-                    <li class="breadcrumb-item"><a class="text-white" href="{% url 'prestation-form' %}">Metier</a></li>
-                    <li class="breadcrumb-item text-primary active" aria-current="page">Service</li>
+                    <li class="breadcrumb-item text-primary active" aria-current="page">Admin</li>
+                    <li class="breadcrumb-item"><a class="text-white" href="{% url 'prestation-form' %}">Service</a></li>
                 </ol>
             </nav>
         </div>
@@ -33,32 +33,31 @@
         <div class="container">
 
             <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
-                <div class="d-inline-block rounded-pill bg-secondary text-primary py-1 px-3 mb-3">What We Do</div>
+                <div class="d-inline-block rounded-pill bg-secondary text-primary py-1 px-3 mb-3">Administration</div>
                 <h1 class="display-6 mb-5">Les recensements et demande en attents sont affichés ici</h1>
             </div>
 
             <div class="row g-4 justify-content-center">
-                {% for request in cencus_request %}
+                {% for request in cencus_request|dictsortreversed:"event_date" %}
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="service-item bg-white text-center h-100 p-4 p-xl-5">
+                    <div class="service-item bg-white h-100 p-4 p-xl-5">
                         <img class="img-fluid mb-4" src="img/icon-1.png" alt="">
                         <h4 class="mb-3">{{ request.type_recensement }}</h4>
                         {% if request.type_recensement == 'naissance' %}
-                        <h6>Nom</h6><p>{{ request.fullname }}</p>
-                        <h6>Père</h6><p>{{ request.father_fullname }}</p>
-                        <h6>Mère</h6><p>{{ request.mother_fullname }}</p>
-                        <h6>Lieu</h6><p>{{ request.event_space }}</p>
+                        <h6>{{ request.fullname }}</h6><p class="small">Nom</p>
+                        <h6>{{ request.father_fullname }}</h6><p class="small">Père</p>
+                        <h6>{{ request.mother_fullname }}</h6><p class="small">Mère</p>
+                        <h6>{{ request.event_space }}</h6><p class="small">Lieu de naissance</p>
                         {% elif request.type_recensement == 'deces'%}
-                        <h6>defunt</h6><p>{{ request.fullname }}</p>
-                        <h6>Lieu</h6><p>{{ request.event_space }}</p>
+                        <h6>{{ request.fullname }}</h6><p class="small">defunt</p>
+                        <h6>{{ request.event_space }}</h6><p class="small">Lieu de décès</p>
                         {% elif request.type_recensement == 'amenagement'%}
-                        <h6>Nom</h6><p>{{ request.fullname }}</p>
-                        <h6>Nouvel domicile</h6><p>{{ request.event_space }}</p>
+                        <h6>{{ request.fullname }}</h6><p class="small">Nom</p>
+                        <h6>{{ request.event_space }}</h6><p class="small">Nouvel domicile</p>
                         {% elif request.type_recensement == 'demenagement'%}
-                        <h6>Nom</h6><p>{{ request.fullname }}</p>
-                        <h6>Provenance</h6><p>{{ request.event_space }}</p>
+                        <h6>{{ request.fullname }}</h6><p class="small">Nom</p>
+                        <h6>{{ request.event_space }}</h6><p class="small">Provenance</p>
                         {% endif %}
-                        <p class="mb-4">Tempor ut dolore lorem kasd vero ipsum sit eirmod sit. Ipsum diam justo sed vero dolor duo.</p>
                         {% comment %} {% if user.is_authenticated %} {% endcomment %}
                         <a class="btn btn-outline-primary px-3" href="{% url 'update-validation' request.id %}">
                             confirmer
@@ -71,17 +70,16 @@
                 </div>
                 {% endfor %}
 
-                {% for request in prestation_request %}
+                {% for request in prestation_request|dictsortreversed:"pub_date" %}
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="service-item bg-white text-center h-100 p-4 p-xl-5">
+                    <div class="service-item bg-white  h-100 p-4 p-xl-5">
                         <img class="img-fluid mb-4" src="{{ request.profile_photo.url }}" alt="">
                         <h4 class="mb-3">Prestataire de Servive</h4>
-                        <h6>Nom</h6><p>{{ request.fullname }}</p>
-                        <h6>services</h6><p>{{ request.services }}</p>
-                        <h6>contact</h6><p>{{ request.contact }}</p>
-                        <h6>work_space</h6><p>{{ request.work_space }}</p>
-                        <h6>code de payement</h6><p>{{ request.payement_code }}</p>
-                        <h6>description</h6><p>{{ request.specificity }}</p>
+                        <h6>{{ request.fullname }}</h6><p class="small">nom et prenom</p> 
+                        <h6>{{ request.services }}</h6><p class="small">services</p> 
+                        <h6>{{ request.contact }}</h6><p class="small">contact</p> 
+                        <h6>{{ request.work_space }}</h6><p class="small">Lieu de service</p> 
+                        <h6>{{ request.payement_code }}</h6><p class="small">code de payement</p>
                         {% comment %} {% if user.is_authenticated %} {% endcomment %}
                         <a class="btn btn-outline-primary px-3" href="{% url 'update-validation' request.id %}?services=services">
                             confirmer

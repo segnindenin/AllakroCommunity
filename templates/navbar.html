@@ -25,7 +25,7 @@
                 <a href="{% url 'projects' %}" class="nav-item nav-link active">Projets</a>
                 {% comment %} <a href="pct_about.html" class="nav-item nav-link">Pharmacie et centre de santé</a> {% endcomment %}
                 <a href="{% url 'health' %}" class="nav-item nav-link">Santé</a>
-                <a href="{% url 'recensement-validation' %}" class="nav-item nav-link">Communauté (<span id="notification">0</span>)</a>
+                <a href="{% url 'prestation-form' %}" class="nav-item nav-link ">Communauté {% if user.is_authenticated %}(<span id="notification">0</span>){% endif %}</a>
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">recensement</a>
                     <div class="dropdown-menu m-0">
@@ -40,7 +40,7 @@
             </div>
             <div class="d-none d-lg-flex ms-2">
                 <a class="btn btn-outline-primary py-2 px-3" href="{% url 'logout' %}">
-                    connection
+                    Admin
                     <div class="d-inline-flex btn-sm-square bg-white text-primary rounded-circle ms-2">
                         <i class="fa fa-arrow-right"></i>
                     </div>
