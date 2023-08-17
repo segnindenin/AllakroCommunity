@@ -1,0 +1,37 @@
+{% extends 'base_admin.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<div class="container">
+    <div class="row justify-content-center align-items-center min-vh-100">
+        <div class="col-sm-12 col-xl-6">
+            <div class="bg-light rounded p-4">
+                <h6 class="mb-4">Nouveau Centre</h6>
+                <form class="form" action="" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="Nom" class="form-label">Institut</label>
+                        <input type="text" name="institut" class="form-control" id="name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="Budget" class="form-label">Nom du Centre</label>
+                        <input type="number" name="center_name" class="form-control" id="name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="stade" class="form-label">Emplacement</label>
+                        <input type="number" name="place" class="form-control" id="name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="Description" class="form-label">Description du Centre</label>
+                        <textarea type="text" name="description" class="form-control" id="name"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Enregistrer</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

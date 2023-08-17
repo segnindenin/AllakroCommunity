@@ -125,6 +125,33 @@
             updateSickResidentsCount();
             setInterval(updateSickResidentsCount, 10000);
     </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Obtenez le nom de la page actuelle à partir de l'URL
+            var currentPage = window.location.pathname;
+        
+            // Associez les noms des pages aux identifiants des onglets
+            var tabMappings = {
+                "{% url 'projects' %}": "projects-tab",
+                "{% url 'health' %}": "health-tab",
+                "{% url 'prestation-form' %}": "prestation-form",
+                "{% url 'recensement-page' %}": "recensement-form",
+                "{% url 'news-file' %}": "news-file",
+                // ajoutez d'autres correspondances ici
+            };
+        
+            // Ajoutez la classe "active" à l'onglet actuel
+            if (tabMappings[currentPage]) {
+                var activeTab = document.getElementById(tabMappings[currentPage]);
+                if (activeTab) {
+                    activeTab.classList.add("active");
+                }
+            }
+        });
+    </script>
+
+
 </body>
 
 </html>

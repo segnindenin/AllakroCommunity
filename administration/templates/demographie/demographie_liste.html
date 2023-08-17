@@ -1,0 +1,124 @@
+{% extends 'base_admin.html' %}
+{% load static %}
+
+
+{% block content %}
+    
+    
+    <!-- Recent Sales Start -->
+    <div class="container-fluid pt-4 px-4">
+        <div class="bg-light text-center rounded p-4">
+            <div class="d-flex align-items-center justify-content-between mb-4">
+                <h6 class="mb-0">Liste des Habitants</h6>
+            </div>
+            <div class="table-responsive">
+                <table class="table text-start align-middle table-bordered table-hover mb-0">
+                    <thead>
+                        <tr class="bg-dark text-white">
+                            <th scope="col">Date</th>
+                            <th scope="col">Nom et Prenom</th>
+                            <th scope="col">Fonction</th>
+                            <th scope="col">Contact</th>
+                            <th scope="col">Sexe</th>
+                            <th scope="col">type de pièce</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for habitant in habitants %}
+                        <tr>
+                            <td>{{habitant.birthdate}}</td>
+                            <td>{{habitant.firstname}}</td>
+                            <td>{{habitant.work_name}}</td>
+                            <td>{{habitant.contact}}</td>
+                            <td>Masculin</td>
+                            <td>{{habitant.type_piece}}</td>
+                        </tr>
+                        {% endfor %}
+                        <tr>
+                            <td>01 Jan 2023</td>
+                            <td>hbt allakro</td>
+                            <td>Jhon Doe</td>
+                            <td>Jhon Doe</td>
+                            <td>Jhon Doe</td>
+                            <td>Jhon Doe</td>
+                        </tr>
+                        <tr>
+                            <td>01 Jan 2023</td>
+                            <td>hbt allakro</td>
+                            <td>Jhon Doe</td>
+                            <td>Jhon Doe</td>
+                            <td>Jhon Doe</td>
+                            <td>Jhon Doe</td>
+                        </tr>
+                        <tr>
+                            <td>01 Jan 2023</td>
+                            <td>hbt allakro</td>
+                            <td>Jhon Doe</td>
+                            <td>Jhon Doe</td>
+                            <td>Jhon Doe</td>
+                            <td>Jhon Doe</td>
+                        </tr>
+                        <tr>
+                            <td>01 Jan 2023</td>
+                            <td>hbt allakro</td>
+                            <td>Jhon Doe</td>
+                            <td>Jhon Doe</td>
+                            <td>Jhon Doe</td>
+                            <td>Jhon Doe</td>
+                        </tr>
+                        <tr>
+                            <td>01 Jan 2023</td>
+                            <td>hbt allakro</td>
+                            <td>Jhon Doe</td>
+                            <td>Jhon Doe</td>
+                            <td>Jhon Doe</td>
+                            <td>Jhon Doe</td>
+                        </tr>
+                        <tr>
+                            <td>01 Jan 2023</td>
+                            <td>hbt allakro</td>
+                            <td>Jhon Doe</td>
+                            <td>Jhon Doe</td>
+                            <td>Jhon Doe</td>
+                            <td>Jhon Doe</td>
+                        </tr>
+                        <tr>
+                            <td>01 Jan 2023</td>
+                            <td>hbt allakro</td>
+                            <td>Jhon Doe</td>
+                            <td>Jhon Doe</td>
+                            <td>Jhon Doe</td>
+                            <td>Jhon Doe</td>
+                        </tr>
+                        <tr>
+                            <td>01 Jan 2023</td>
+                            <td>hbt allakro</td>
+                            <td>Jhon Doe</td>
+                            <td>Jhon Doe</td>
+                            <td>Jhon Doe</td>
+                            <td>Jhon Doe</td>
+                        </tr>
+                        <tr>
+                            <td>01 Jan 2023</td>
+                            <td>hbt allakro</td>
+                            <td>Jhon Doe</td>
+                            <td>Jhon Doe</td>
+                            <td>Jhon Doe</td>
+                            <td>Jhon Doe</td>
+                        </tr>
+                        <tr>
+                            <td>01 Jan 2023</td>
+                            <td>hbt allakro</td>
+                            <td>Jhon Doe</td>
+                            <td>Jhon Doe</td>
+                            <td>Jhon Doe</td>
+                            <td>Jhon Doe</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- Recent Sales End -->
+
+{% endblock %}

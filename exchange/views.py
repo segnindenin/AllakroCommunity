@@ -102,7 +102,9 @@ def recensementPage(request):
             event_date=request.POST['event_date'], 
             event_space=request.POST['event_space'], 
             personal_home=request.POST['personal_home'],)
+        messages.success(request, "Le formulaire a été soumis avec succès.")
     return render(request, f'exchange/recensement/{page}.html')
+
 
 def recensementValidation(request):
     cencus_request = models.Recensement.objects.filter(statut_recensement='waiting')
@@ -159,7 +161,7 @@ def projectsRoom(request):
 
 def healthRoom(request):
     pjts = models.Projet.objects.all()
-    return render(request, 'exchange/sante/consultation_list.html', context={'pjts': pjts})
+    return render(request, 'exchange/sante/centre_sante.html', context={'pjts': pjts})
 
 def centerInterest(request):
     publications = models.Activity.objects.all()

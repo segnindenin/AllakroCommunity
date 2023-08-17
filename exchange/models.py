@@ -1,70 +1,71 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from dataList import *
 
 # Create your models here.
 
-lieux = [
-    ('Entre_Village', 'Entre du Village'),
-    ('Sortie_Village', 'Sortie du Village'),
-    ('Arbe_Palabre', 'Arbe Palabre'),
-    ('Centre_Village', 'Centre du Village'),
-    ]
-recensement = [
-    ('inscription', 'inscription'),
-    ('amenagement', 'amenagement'),
-    ('demenagement', 'demenagement'),
-    ('naissance', 'naissance'),
-    ('deces', 'deces'),
-    ]
-metier = [
-    ('Mecanicien', 'Mecanicien'),
-    ('maçon', 'maçon'),
-    ('menusier', 'menusier'),
-    ('plombier', 'plombier'),
-    ('etudiant', 'etudiant'),
-    ('Autre', 'Autre'),
-    ]
-Pieces = [
-    ('Cart_National_Identity', 'CNI'),
-    ('Extrait_Naissance', 'EN'),
-    ('Attestation_Identity', 'AI'),
-    ('Carte_Etudiant', 'CE'),
-    ('Autre', 'Autre'),
-    ]
-Pays = [
-    ('Ivorycoast', 'ivoirien'),
-    ('Mali', 'malien'),
-    ('BurkinaFaso', 'burkinabè'),
-    ('Ghana', 'ghanaeen'),
-    ('Benin', 'beninois'),
-    ('Autre', 'autre'),
-    ]
-Diplome= [
-    ('M3eme', 'M3eme'),
-    ('BEPC', 'BEPC'),
-    ('BAC', 'BAC'),
-    ('LICENCE', 'LICENCE'),
-    ('MASTER', 'MASTER'),
-    ('DOCTORAT', 'DOCTORAT'),
-    ('Autre', 'Autre'),
-    ]
-Matrimonal= [
-    ('Marié', 'Marié'),
-    ('Celibataire', 'Celibataire'),
-    ('Divorcé', 'Divorcé'),
-    ]
-categories = [
-    ('HealthCenter', 'Health Center'),
-    ('CommercialCenter', 'Commercial Center'),
-    ('AutoriteVillage', 'Autorite Village'),
-    ('WorkCommunity', 'Work Community'),
-    ]
-type_maladie = [
-    ('Paludisme', 'Paludisme'),
-    ('FièvreTyphoide', 'Fièvre Typhoide'),
-    ('COVID19', 'COVID19'),
-    ('Autre', 'Autre'),
-    ]
+# lieux = [
+#     ('Entre_Village', 'Entre du Village'),
+#     ('Sortie_Village', 'Sortie du Village'),
+#     ('Arbe_Palabre', 'Arbe Palabre'),
+#     ('Centre_Village', 'Centre du Village'),
+#     ]
+# recensement = [
+#     ('inscription', 'inscription'),
+#     ('amenagement', 'amenagement'),
+#     ('demenagement', 'demenagement'),
+#     ('naissance', 'naissance'),
+#     ('deces', 'deces'),
+#     ]
+# metier = [
+#     ('Mecanicien', 'Mecanicien'),
+#     ('maçon', 'maçon'),
+#     ('menusier', 'menusier'),
+#     ('plombier', 'plombier'),
+#     ('etudiant', 'etudiant'),
+#     ('Autre', 'Autre'),
+#     ]
+# Pieces = [
+#     ('Cart_National_Identity', 'CNI'),
+#     ('Extrait_Naissance', 'EN'),
+#     ('Attestation_Identity', 'AI'),
+#     ('Carte_Etudiant', 'CE'),
+#     ('Autre', 'Autre'),
+#     ]
+# Pays = [
+#     ('Ivorycoast', 'ivoirien'),
+#     ('Mali', 'malien'),
+#     ('BurkinaFaso', 'burkinabè'),
+#     ('Ghana', 'ghanaeen'),
+#     ('Benin', 'beninois'),
+#     ('Autre', 'autre'),
+#     ]
+# Diplome= [
+#     ('M3eme', 'M3eme'),
+#     ('BEPC', 'BEPC'),
+#     ('BAC', 'BAC'),
+#     ('LICENCE', 'LICENCE'),
+#     ('MASTER', 'MASTER'),
+#     ('DOCTORAT', 'DOCTORAT'),
+#     ('Autre', 'Autre'),
+#     ]
+# Matrimonal= [
+#     ('Marié', 'Marié'),
+#     ('Celibataire', 'Celibataire'),
+#     ('Divorcé', 'Divorcé'),
+#     ]
+# categories = [
+#     ('HealthCenter', 'Health Center'),
+#     ('CommercialCenter', 'Commercial Center'),
+#     ('AutoriteVillage', 'Autorite Village'),
+#     ('WorkCommunity', 'Work Community'),
+#     ]
+# type_maladie = [
+#     ('Paludisme', 'Paludisme'),
+#     ('FièvreTyphoide', 'Fièvre Typhoide'),
+#     ('COVID19', 'COVID19'),
+#     ('Autre', 'Autre'),
+#     ]
 
 class ReferentielMetier(models.Model):
     work_name = models.CharField(max_length=20, choices=metier)
@@ -74,21 +75,24 @@ class ReferentielMetier(models.Model):
 
 class Habitant(models.Model):
     type_recensement = models.CharField(choices=recensement, max_length=20)
+    father_fullname = models.CharField(max_length=50, null=True)
+    mother_fullname = models.CharField(max_length=50, null=True)
     firstname = models.CharField(max_length=50, null=True)
     lastname = models.CharField(max_length=50, null=True)
+    birthdate = models.DateField()
+    sexe = models.CharField(max_length=20)
     nationality = models.CharField(choices=Pays, max_length=20)
     type_piece = models.fields.CharField(choices=Pieces, max_length=25)
     piece_number = models.CharField(max_length=20, null=True)
     marital_status = models.fields.CharField(choices=Matrimonal, max_length=20)
+    work_name = models.CharField(max_length=20, null=True)
     contact = models.CharField(max_length=50, null=True)
     level_studies = models.fields.CharField(choices=Diplome, max_length=20)
-    read_ability = models.BooleanField()
-    installation_date = models.DateField()
-    neighborhoodmove = models.DateField(null=True, blank=True)
-    birthdate = models.DateField()
-    deathdate = models.DateField(null=True, blank=True)
-    work_name = models.ManyToManyField(ReferentielMetier, related_name='travailleur', blank=True)
+    event_date = models.DateField()
+    event_space = models.CharField(max_length=50, blank=True)
+    personal_home = models.CharField(max_length=50, blank=True)
     work_space = models.CharField(max_length=20, choices=lieux, blank=True)
+    statut_recensement = models.CharField(max_length=20, choices=validate_level, blank=True)
     def __str__(self):
         return f'{self.id} {self.firstname} {self.lastname}'
  
@@ -178,7 +182,7 @@ class CarnetSante(models.Model):
         return f'{self.acteurID} {self.disease_name} {self.date_recorder}'
 
 
-class joboffer(models.Model):
+class JobOffer(models.Model):
     publieursID = models.ForeignKey(Acteur, null=True, on_delete=models.SET_NULL, related_name='publieurs')
     titre = models.CharField(max_length=20)
     description = models.TextField(max_length=2000, null=True, blank=True)
@@ -191,7 +195,7 @@ class joboffer(models.Model):
 
 class Postulation(models.Model):
     postulerID = models.ForeignKey(Acteur, null=True, on_delete=models.SET_NULL, related_name='postuleur')
-    offreID = models.ForeignKey(joboffer, null=True, on_delete=models.CASCADE)
+    offreID = models.ForeignKey(JobOffer, null=True, on_delete=models.CASCADE)
 
 
 class Projet(models.Model):
