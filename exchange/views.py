@@ -110,6 +110,7 @@ def prestationForm(request):
             payement_code=request.POST['payement_code'],
             photo=request.FILES.get('photo'),
             )
+        messages.success(request, "Le formulaire a été soumis avec succès.")
     return render(request, 'exchange/emplois/postulate.html')
 
 def newsFile(request):

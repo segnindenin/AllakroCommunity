@@ -27,8 +27,8 @@
                         <h6 class="mb-2">Budget: {{projet.budget}}</h6>
                         <h6 class="mb-2">{{projet.owner}}</h6>
                         <h6 class="mb-2">{{projet.state}}</h6>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#descriptionModal{{ projet.id }}">description</button>
-                        <a href="{% url 'project-update' projet.id %}" class="text">Mise à jour</a>
+                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#descriptionModal{{ projet.id }}">description</button>
+                        <a href="{% url 'project-update' projet.id %}" class="text-primary">Mise à jour</a>
                     </div>
                 </div>
             </div>
