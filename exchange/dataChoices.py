@@ -6,7 +6,6 @@ lieux = [
     ('Centre_Village', 'Centre du Village'),
     ]
 recensement = [
-    ('inscription', 'inscription'),
     ('amenagement', 'amenagement'),
     ('demenagement', 'demenagement'),
     ('naissance', 'naissance'),

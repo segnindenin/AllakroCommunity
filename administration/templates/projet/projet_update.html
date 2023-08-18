@@ -1,0 +1,42 @@
+{% extends 'base_admin.html' %}
+{% load static %}
+
+
+{% block content %}
+
+
+<div class="container">
+    <div class="row justify-content-center align-items-center min-vh-100">
+        <div class="col-sm-12 col-xl-6">
+            <div class="bg-light rounded p-4">
+                <h6 class="mb-4">Nouveau Projet</h6>
+                <form class="form" action="" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="Nom" class="form-label">Nom du Projet</label>
+                        <input type="text" name="project_name" value="{{ projet.project_name }}" class="form-control" id="name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="Budget" class="form-label">Budget de réalisation</label>
+                        <input type="text" name="budget" value="{{ projet.budget }}" class="form-control" id="name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="stade" class="form-label">stade de réalisation</label>
+                        <input type="number" name="state" value="{{ projet.state }}" class="form-control" id="name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="Projet" class="form-label">Propiétaire du Projet</label>
+                        <input type="text" name="owner" value="{{ projet.owner }}" class="form-control" id="exampleInputPassword1">
+                    </div>
+                    <div class="mb-3">
+                        <label for="Description" class="form-label">Description du Projet</label>
+                        <textarea type="text" name="description" class="form-control" id="name">{{ projet.description }}</textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Enregistrer</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

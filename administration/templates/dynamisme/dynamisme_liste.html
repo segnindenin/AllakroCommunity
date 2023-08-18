@@ -56,50 +56,54 @@
             <div class="container-fluid pt-4 px-4">
                 <div class="bg-light text-center rounded p-4">
                     <div class="d-flex align-items-center justify-content-between mb-4">
-                        <h6 class="mb-0">Liste des Amenagements</h6>
+                        <h6 class="mb-0">Liste des {{page_request}}</h6>
                     </div>
                     <div class="table-responsive">
                         <table class="table text-start align-middle table-bordered table-hover mb-0">
+                            {% if page_request == 'naissance' %}
                             <thead>
                                 <tr class="bg-dark text-white">
                                     <th scope="col">Date</th>
                                     <th scope="col">Nom et Prenom</th>
-                                    <th scope="col">Fonction</th>
-                                    <th scope="col">Action</th>
+                                    <th scope="col">Nom du père</th>
+                                    <th scope="col">Nom de mère</th>
+                                    <th scope="col">sexe</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                {% for recensement in recensements %}
                                 <tr>
-                                    <td>01 Jan 2045</td>
-                                    <td>INV-0123</td>
-                                    <td>Jhon Doe</td>
-                                    <td><a class="btn btn-sm btn-primary" href="">supprimer</a></td>
+                                    <td>{{recensement.event_date}}</td>
+                                    <td>{{recensement.fullname}}</td>
+                                    <td>{{recensement.father_fullname}}</td>
+                                    <td>{{recensement.mother_fullname}}</td>
+                                    <td>{{recensement.sexe}}</td>
                                 </tr>
-                                <tr>
-                                    <td>01 Jan 2045</td>
-                                    <td>INV-0123</td>
-                                    <td>Jhon Doe</td>
-                                    <td><a class="btn btn-sm btn-primary" href="">supprimer</a></td>
-                                </tr>
-                                <tr>
-                                    <td>01 Jan 2045</td>
-                                    <td>INV-0123</td>
-                                    <td>Jhon Doe</td>
-                                    <td><a class="btn btn-sm btn-primary" href="">supprimer</a></td>
-                                </tr>
-                                <tr>
-                                    <td>01 Jan 2045</td>
-                                    <td>INV-0123</td>
-                                    <td>Jhon Doe</td>
-                                    <td><a class="btn btn-sm btn-primary" href="">supprimer</a></td>
-                                </tr>
-                                <tr>
-                                    <td>01 Jan 2045</td>
-                                    <td>INV-0123</td>
-                                    <td>Jhon Doe</td>
-                                    <td><a class="btn btn-sm btn-primary" href="">supprimer</a></td>
-                                </tr>
+                                {% endfor %}
                             </tbody>
+                            
+                            {% else %}
+                            <thead>
+                                <tr class="bg-dark text-white">
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Nom et Prenom</th>
+                                    <th scope="col">sexe</th>
+                                    <th scope="col">Fonction</th>
+                                    <th scope="col">Habitation Actuel</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for recensement in recensements %}
+                                <tr>
+                                    <td>{{recensement.event_date}}</td>
+                                    <td>{{recensement.fullname}}</td>
+                                    <td>{{recensement.sexe}}</td>
+                                    <td>{{recensement.work_name}}</td>
+                                    <td>{{recensement.event_space}}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                            {% endif %}
                         </table>
                     </div>
                 </div>

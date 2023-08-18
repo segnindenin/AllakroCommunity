@@ -4,6 +4,14 @@
 
 {% block content %}
 
+{% if messages %}
+    <ul class="text-danger">
+        {% for message in messages %}
+            <li{% if message.tags %} class="text-danger"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
 <div class="container">
     <div class="row justify-content-center align-items-center min-vh-100">
         <div class="col-sm-12 col-xl-6">
@@ -16,12 +24,12 @@
                         <input type="text" name="institut" class="form-control" id="name">
                     </div>
                     <div class="mb-3">
-                        <label for="Budget" class="form-label">Nom du Centre</label>
-                        <input type="number" name="center_name" class="form-control" id="name">
+                        <label for="Nom" class="form-label">Nom du Centre</label>
+                        <input type="text" name="center_name" class="form-control" id="name">
                     </div>
                     <div class="mb-3">
                         <label for="stade" class="form-label">Emplacement</label>
-                        <input type="number" name="place" class="form-control" id="name">
+                        <input type="text" name="place" class="form-control" id="name">
                     </div>
                     <div class="mb-3">
                         <label for="Description" class="form-label">Description du Centre</label>

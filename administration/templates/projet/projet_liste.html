@@ -4,221 +4,99 @@
 
 {% block content %}
 
+
+{% if messages %}
+    <ul class="text-danger">
+        {% for message in messages %}
+            <li{% if message.tags %} class="text-danger"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
     <!-- Sale & Revenue Start -->
     <div class="container-fluid pt-4 px-4">
         <a href="{% url 'project-form' %}" class="text">Nouveau Projet</a>
         <div class="row g-4">
-            <div class="col-sm-6 col-xl-3">
-                <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                    <i class="fas fa-users fa-3x text-primary"></i>
+
+            {% for projet in projets %}
+            <div class="col-sm-6 col-xl-4">
+                <div class="bg-light rounded d-flex align-items-projet justify-content-between p-4">
+                    <i class="fas fa-project-diagram fa-3x text-primary"></i>
                     <div class="ms-3">
-                        <h6 class="mb-2">Nom du Projet</h6>
-                        <h6 class="mb-2">Description</h6>
-                        <h6 class="mb-2">Budget</h6>
-                        <h6 class="mb-2">Niveau</h6>
+                        <h6 class="mb-2">{{projet.project_name}}</h6>
+                        <h6 class="mb-2">Budget: {{projet.budget}}</h6>
+                        <h6 class="mb-2">{{projet.owner}}</h6>
+                        <h6 class="mb-2">{{projet.state}}</h6>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#descriptionModal{{ projet.id }}">description</button>
+                        <a href="{% url 'project-update' projet.id %}" class="text">Mise à jour</a>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6 col-xl-3">
-                <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                    <i class="fas fa-graduation-cap fa-3x text-primary"></i>
-                    <div class="ms-3">
-                        <h6 class="mb-2">Nom du Projet</h6>
-                        <h6 class="mb-2">Description</h6>
-                        <h6 class="mb-2">Budget</h6>
-                        <h6 class="mb-2">Niveau</h6>
+            <!-- Modal pour la description du projet -->
+            <!-- pop-up -->
+            <div class="modal fade" id="descriptionModal{{ projet.id }}" tabindex="-1" aria-labelledby="descriptionModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="descriptionModalLabel">{{ projet.project_name }}</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            {{ projet.description }}
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                        </div>
                     </div>
                 </div>
             </div>
+            {% endfor %}
+
             <div class="col-sm-6 col-xl-3">
-                <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                <div class="bg-light rounded d-flex align-items-projet justify-content-between p-4">
                     <i class="fas fa-project-diagram fa-3x text-primary"></i>
                     <div class="ms-3">
                         <h6 class="mb-2">Nom du Projet</h6>
                         <h6 class="mb-2">Description</h6>
                         <h6 class="mb-2">Budget</h6>
                         <h6 class="mb-2">Niveau</h6>
+                        <a href="#" class="text">Description</a>
                     </div>
                 </div>
             </div>
             <div class="col-sm-6 col-xl-3">
-                <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                    <i class="fas fa-hospital fa-3x text-primary"></i>
-                    <div class="ms-3">
-                        <h6 class="mb-2">Nom du Projet</h6>
-                        <h6 class="mb-2">Description</h6>
-                        <h6 class="mb-2">Budget</h6>
-                        <h6 class="mb-2">Niveau</h6>
-                        {% comment %} <p class="mb-2">Total Femme</p>
-                        <h6 class="mb-2">Nom du Projet</h6>
-                        <h6 class="mb-2">Description</h6>
-                        <h6 class="mb-2">Budget</h6>
-                        <h6 class="mb-2">Niveau</h6> {% endcomment %}
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    {% comment %} deuxiem {% endcomment %}
-    <div class="container-fluid pt-4 px-4">
-        <div class="row g-4">
-            <div class="col-sm-6 col-xl-3">
-                <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                    <i class="fas fa-briefcase fa-3x text-primary"></i>
-                    <div class="ms-3">
-                        <h6 class="mb-2">Nom du Projet</h6>
-                        <h6 class="mb-2">Description</h6>
-                        <h6 class="mb-2">Budget</h6>
-                        <h6 class="mb-2">Niveau</h6>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-xl-3">
-                <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                    <i class="fas fa-hammer fa-3x text-primary"></i>
-                    <div class="ms-3">
-                        <h6 class="mb-2">Nom du Projet</h6>
-                        <h6 class="mb-2">Description</h6>
-                        <h6 class="mb-2">Budget</h6>
-                        <h6 class="mb-2">Niveau</h6>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-xl-3">
-                <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                    <i class="fas fa-newspaper fa-3x text-primary"></i>
-                    <div class="ms-3">
-                        <h6 class="mb-2">Nom du Projet</h6>
-                        <h6 class="mb-2">Description</h6>
-                        <h6 class="mb-2">Budget</h6>
-                        <h6 class="mb-2">Niveau</h6>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-xl-3">
-                <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                    <i class="fas fa-poll fa-3x text-primary"></i>
-                    <div class="ms-3">
-                        <h6 class="mb-2">Nom du Projet</h6>
-                        <h6 class="mb-2">Description</h6>
-                        <h6 class="mb-2">Budget</h6>
-                        <h6 class="mb-2">Niveau</h6>
-                        {% comment %} <p class="mb-2">Total Femme</p>
-                        <h6 class="mb-2">Nom du Projet</h6>
-                        <h6 class="mb-2">Description</h6>
-                        <h6 class="mb-2">Budget</h6>
-                        <h6 class="mb-2">Niveau</h6> {% endcomment %}
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    {% comment %} troisième {% endcomment %}
-    <div class="container-fluid pt-4 px-4">
-        <div class="row g-4">
-            <div class="col-sm-6 col-xl-3">
-                <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                    <i class="fas fa-briefcase fa-3x text-primary"></i>
-                    <div class="ms-3">
-                        <h6 class="mb-2">Nom du Projet</h6>
-                        <h6 class="mb-2">Description</h6>
-                        <h6 class="mb-2">Budget</h6>
-                        <h6 class="mb-2">Niveau</h6>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-xl-3">
-                <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                    <i class="fas fa-hammer fa-3x text-primary"></i>
-                    <div class="ms-3">
-                        <h6 class="mb-2">Nom du Projet</h6>
-                        <h6 class="mb-2">Description</h6>
-                        <h6 class="mb-2">Budget</h6>
-                        <h6 class="mb-2">Niveau</h6>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-xl-3">
-                <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                    <i class="fas fa-newspaper fa-3x text-primary"></i>
-                    <div class="ms-3">
-                        <h6 class="mb-2">Nom du Projet</h6>
-                        <h6 class="mb-2">Description</h6>
-                        <h6 class="mb-2">Budget</h6>
-                        <h6 class="mb-2">Niveau</h6>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-xl-3">
-                <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                    <i class="fas fa-poll fa-3x text-primary"></i>
-                    <div class="ms-3">
-                        <h6 class="mb-2">Nom du Projet</h6>
-                        <h6 class="mb-2">Description</h6>
-                        <h6 class="mb-2">Budget</h6>
-                        <h6 class="mb-2">Niveau</h6>
-                        {% comment %} <p class="mb-2">Total Femme</p>
-                        <h6 class="mb-2">Nom du Projet</h6>
-                        <h6 class="mb-2">Description</h6>
-                        <h6 class="mb-2">Budget</h6>
-                        <h6 class="mb-2">Niveau</h6> {% endcomment %}
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="container-fluid pt-4 px-4">
-        <div class="row g-4">
-            <div class="col-sm-6 col-xl-3">
-                <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                    <i class="fas fa-users fa-3x text-primary"></i>
-                    <div class="ms-3">
-                        <h6 class="mb-2">Habitants</h6>
-                        <h6 class="mb-2">Nom du Projet</h6>
-                        <h6 class="mb-2">Description</h6>
-                        <h6 class="mb-2">Budget</h6>
-                        <h6 class="mb-2">Niveau</h6>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-xl-3">
-                <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                    <i class="fas fa-graduation-cap fa-3x text-primary"></i>
-                    <div class="ms-3">
-                        <h6 class="mb-2">Nom du Projet</h6>
-                        <h6 class="mb-2">Description</h6>
-                        <h6 class="mb-2">Budget</h6>
-                        <h6 class="mb-2">Niveau</h6>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-xl-3">
-                <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                <div class="bg-light rounded d-flex align-items-projet justify-content-between p-4">
                     <i class="fas fa-project-diagram fa-3x text-primary"></i>
                     <div class="ms-3">
                         <h6 class="mb-2">Nom du Projet</h6>
                         <h6 class="mb-2">Description</h6>
                         <h6 class="mb-2">Budget</h6>
                         <h6 class="mb-2">Niveau</h6>
+                        <a href="#" class="text">Description</a>
                     </div>
                 </div>
             </div>
             <div class="col-sm-6 col-xl-3">
-                <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                    <i class="fas fa-hospital fa-3x text-primary"></i>
+                <div class="bg-light rounded d-flex align-items-projet justify-content-between p-4">
+                    <i class="fas fa-project-diagram fa-3x text-primary"></i>
                     <div class="ms-3">
                         <h6 class="mb-2">Nom du Projet</h6>
                         <h6 class="mb-2">Description</h6>
                         <h6 class="mb-2">Budget</h6>
                         <h6 class="mb-2">Niveau</h6>
-                        {% comment %} <p class="mb-2">Total Femme</p>
+                        <a href="#" class="text">Description</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-xl-3">
+                <div class="bg-light rounded d-flex align-items-projet justify-content-between p-4">
+                    <i class="fas fa-project-diagram fa-3x text-primary"></i>
+                    <div class="ms-3">
                         <h6 class="mb-2">Nom du Projet</h6>
                         <h6 class="mb-2">Description</h6>
                         <h6 class="mb-2">Budget</h6>
-                        <h6 class="mb-2">Niveau</h6> {% endcomment %}
+                        <h6 class="mb-2">Niveau</h6>
+                        <a href="#" class="text">Description</a>
                     </div>
                 </div>
             </div>

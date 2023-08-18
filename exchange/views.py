@@ -5,6 +5,7 @@ from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from . import models
+from administration.models import Projects
 from . import forms
 
 # Create your views here.
@@ -25,7 +26,7 @@ def loginPage(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('home') 
+            return redirect('admin-home') 
         else:
             error_message = "Nom d'utilisateur ou mot de passe incorrect."
     return render(request, 'exchange/authentification/connection.html', context={'error_message': error_message})
@@ -54,40 +55,7 @@ def registerPage(request):
                 messages.error(request, 'Habitant non trouvé.')
     return render(request, 'exchange/authentification/inscription.html', context={'choix_statut': choix_statut})
 
-def census(request):
-    context = {
-    'choix_census' : models.recensement,
-    'choix_nationality' : models.Pays,
-    'choix_piece' : models.Pieces,
-    'choix_marital' : models.Matrimonal,
-    'choix_studies' : models.Diplome,
-    'work_space' : models.lieux,
-    'works' : models.ReferentielMetier.objects.all()
-    }
-    if request.method == 'POST':
-        work_name_ids=request.POST.getlist('work_name')
-        habitant = models.Habitant.objects.create(
-            type_recensement=request.POST['type_recensement'], 
-            firstname=request.POST['firstname'], 
-            lastname=request.POST['lastname'], 
-            nationality=request.POST['nationality'], 
-            type_piece=request.POST['type_piece'], 
-            piece_number=request.POST['piece_number'], 
-            marital_status=request.POST['marital_status'], 
-            contact=request.POST['contact'], 
-            level_studies=request.POST['level_studies'], 
-            read_ability=request.POST['read_ability'], 
-            installation_date=request.POST['installation_date'], 
-            neighborhoodmove=request.POST['neighborhoodmove'], 
-            birthdate=request.POST['birthdate'], 
-            deathdate=request.POST['deathdate'],  
-            work_space=request.POST['work_space'],)
-        habitant.work_name.set(work_name_ids)
-        return redirect('home')
-    return render(request, 'exchange/recensement/inscription.html', context)
-
-
-def recensementPage(request):
+def recensementForm(request):
     page = request.GET.get('type_recensement')
     if request.method == 'POST':
         new_recensement = models.Recensement.objects.create(
@@ -105,8 +73,7 @@ def recensementPage(request):
         messages.success(request, "Le formulaire a été soumis avec succès.")
     return render(request, f'exchange/recensement/{page}.html')
 
-
-def recensementValidation(request):
+def recensementWait(request):
     cencus_request = models.Recensement.objects.filter(statut_recensement='waiting')
     prestation_request = models.Service.objects.filter(statut_recensement='waiting')
     return render(request, 'exchange/communaute/community_detail.html',
@@ -114,6 +81,16 @@ def recensementValidation(request):
             'cencus_request':cencus_request, 
             'prestation_request':prestation_request,
             })
+
+def recensementUpdate(request, id):
+    services = request.GET.get('services')
+    if services:
+        demande = models.Service.objects.get(id=id)
+    else:
+        demande = models.Recensement.objects.get(id=id)
+    demande.statut_recensement = 'validated'
+    demande.save()
+    return redirect('recensement-validation')
 
 def notification(request):
     nbre_waiting = (models.Recensement.objects.filter(statut_recensement='waiting').count() 
@@ -135,16 +112,6 @@ def prestationForm(request):
             )
     return render(request, 'exchange/emplois/postulate.html')
 
-def updateValidation(request, id):
-    services = request.GET.get('services')
-    if services:
-        demande = models.Service.objects.get(id=id)
-    else:
-        demande = models.Recensement.objects.get(id=id)
-    demande.statut_recensement = 'validated'
-    demande.save()
-    return redirect('recensement-validation')
-
 def newsFile(request):
     publications = models.Recensement.objects.filter(statut_recensement='validated') 
     prestations = models.Service.objects.filter(statut_recensement='validated') 
@@ -153,15 +120,14 @@ def newsFile(request):
                     'publications': publications,
                     'prestations':prestations})
 
-
-
-def projectsRoom(request):
-    pjts = models.Projet.objects.all()
-    return render(request, 'exchange/projet/projet_list.html', context={'pjts': pjts})
-
 def healthRoom(request):
     pjts = models.Projet.objects.all()
     return render(request, 'exchange/sante/centre_sante.html', context={'pjts': pjts})
+
+
+def projectsRoom(request):
+    projets = Projects.objects.all()
+    return render(request, 'exchange/projet/projet_list.html', context={'projets': projets})
 
 def centerInterest(request):
     publications = models.Activity.objects.all()

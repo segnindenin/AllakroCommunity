@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from exchange.models import Habitant, Recensement
+from django.contrib import messages
 from administration import models
+from datetime import datetime
 
 
 def adminHome(request):
@@ -8,9 +10,9 @@ def adminHome(request):
 
 def dynamism(request):
     page_request = request.GET.get('dynamism')
-    recensement = models.Recensement.objects.filter(type_recensement=page_request)
+    recensements = Recensement.objects.filter(type_recensement=page_request)
     return render(request, 'dynamisme/dynamisme_liste.html', 
-                  {'recensement':recensement,
+                  {'recensements':recensements,
                    'page_request':page_request})
 
 def demography(request):
@@ -38,24 +40,26 @@ def projectForm(request):
             owner=request.POST['owner'], 
             description=request.POST['description'],
             )
+        messages.success(request, "Le formulaire a été soumis avec succès.")
     return render(request, 'projet/projet_form.html')
 
 def projetUpdate(request, id):
-    projet = models.Markaz.objects.get(id=id)
+    projet = models.Projects.objects.get(id=id)
     if request.method == 'POST':
-        projet.voir = request.POST.get('topic')
-        projet.name = request.POST.get('name')
-        projet.topic = request.POST.get('name')
+        projet.project_name = request.POST.get('project_name')
+        projet.budget = request.POST.get('budget')
+        projet.state = request.POST.get('state')
+        projet.owner = request.POST.get('owner')
         projet.description = request.POST.get('description')
         projet.save()
-        return redirect('home')
-    context = {'markaz': markaz}
-    return render(request, 'base/room_form.html', context)
+        return redirect('project-list')
+    context = {'projet': projet}
+    return render(request, 'projet/projet_update.html', context)
 
 def markaz(request):
-    page_request = request.GET.get('center')
-    centers = Recensement.objects.filter(institut=page_request)
-    return render(request, 'projet/center.html', {'centers':centers})
+    institut = request.GET.get('center')
+    centers = models.Markaz.objects.filter(institut=institut)
+    return render(request, 'center/center.html', {'centers':centers, 'institut':institut})
 
 def markazForm(request):
     if request.method == 'POST':
@@ -65,7 +69,9 @@ def markazForm(request):
             place=request.POST['place'], 
             description=request.POST['description'], 
             )
-    return render(request, 'projet/center_form.html')
+        messages.success(request, "Le formulaire a été soumis avec succès.")
+        
+    return render(request, 'center/center_form.html')
 
 def markazUpdate(request, id):
     markaz = models.Markaz.objects.get(id=id)
@@ -80,8 +86,8 @@ def markazUpdate(request, id):
     return render(request, 'base/room_form.html', context)
 
 def healthData(request):
-    data = models.HealthData.objects.all()
-    return render(request, 'sante/data_list.html', {'data':data})
+    datas = models.HealthData.objects.all()
+    return render(request, 'sante/data_list.html', {'datas':datas})
 
 def healthConsultation(request):
     if request.method == 'POST':
@@ -91,8 +97,9 @@ def healthConsultation(request):
             constante=request.POST['constante'], 
             prescription=request.POST['prescription'], 
             diagnostique=request.POST['diagnostique'], 
-            date=request.POST['date'], 
+            date=datetime.now(), 
             )
+        messages.success(request, "Le formulaire a été soumis avec succès.")
     return render(request, 'sante/consultation_form.html')
 
 def healthDataUpdate(request):

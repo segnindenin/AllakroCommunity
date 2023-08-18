@@ -4,6 +4,15 @@
 
 {% block content %}
 
+
+{% if messages %}
+    <ul class="text-danger">
+        {% for message in messages %}
+            <li{% if message.tags %} class="text-danger"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
 <div class="container">
     <div class="row justify-content-center align-items-center min-vh-100">
         <div class="col-sm-12 col-xl-6">
@@ -17,7 +26,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="Budget" class="form-label">Budget de réalisation</label>
-                        <input type="number" name="budget" class="form-control" id="name">
+                        <input type="text" name="budget" class="form-control" id="name">
                     </div>
                     <div class="mb-3">
                         <label for="stade" class="form-label">stade de réalisation</label>

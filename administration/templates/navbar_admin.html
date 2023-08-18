@@ -53,15 +53,15 @@
             </div>
         </div>
         <div class="nav-item dropdown">
-            <a href="#" class="nav-link dropdown-toggle text-light" data-bs-toggle="dropdown">
+            <a href="{% url 'recensement-validation' %}" class="nav-link dropdown-toggle text-light" data-bs-toggle="dropdown">
                 <i class="fa fa-bell me-lg-2 text-primary"></i>
-                <span class="d-none d-lg-inline-flex">notifications</span>
+                <span class="d-none d-lg-inline-flex">notifications(<span id="notification">0</span>)</span>
             </a>
             <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
-                <a href="#" class="dropdown-item">
-                    <h6 class="fw-normal mb-0">demenagement(1)</h6>
+                <a href="{% url 'recensement-validation' %}" class="dropdown-item">
+                    <h6 class="fw-normal mb-0">validé les demandes</h6>
                 </a>
-                <hr class="dropdown-divider">
+                {% comment %} <hr class="dropdown-divider">
                 <a href="#" class="dropdown-item">
                     <h6 class="fw-normal mb-0">amenagement(1)</h6>
                 </a>
@@ -69,7 +69,7 @@
                 <a href="#" class="dropdown-item">
                     <h6 class="fw-normal mb-0">naissance(2)</h6>
                 </a>
-                <hr class="dropdown-divider">
+                <hr class="dropdown-divider"> {% endcomment %}
             </div>
         </div>
         <div class="nav-item dropdown">

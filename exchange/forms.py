@@ -53,9 +53,9 @@ class CarnetSanteForm(ModelForm):
         fields = '__all__'
 
 
-class jobofferForm(ModelForm):
+class JobOffer(ModelForm):
     class Meta:
-        model = models.joboffer
+        model = models.JobOffer
         fields = '__all__'
 
 

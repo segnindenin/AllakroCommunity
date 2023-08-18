@@ -8,9 +8,9 @@ urlpatterns = [
     path('login/', views.loginPage, name="login"),
     path('logout/', views.logoutUser, name="logout"),
     path('register/', views.registerPage, name="register"),
-    path('recensement-page/', views.recensementPage, name="recensement-page"),
-    path('recensement-validation/', views.recensementValidation, name="recensement-validation"),
-    path('update-validation/<int:id>', views.updateValidation, name="update-validation"),
+    path('recensement-page/', views.recensementForm, name="recensement-page"),
+    path('recensement-validation/', views.recensementWait, name="recensement-validation"),
+    path('update-validation/<int:id>', views.recensementUpdate, name="update-validation"),
     path('news-file', views.newsFile, name="news-file"),
     path('prestation-form', views.prestationForm, name="prestation-form"),
     path('notification/', views.notification, name="notification"),
@@ -25,7 +25,7 @@ urlpatterns = [
     path('job-offer', views.jobOffer, name="job-offer"),
     path('rom-health', views.romHealth, name="rom-health"),
     path('consultation-health', views.consultationHealth, name="consultation-health"),
-    path('census', views.census, name="census"),
+    # path('census', views.census, name="census"),
     path('info-page', views.infoPage, name="info-page"),
 
 ]

@@ -16,101 +16,23 @@
                         <tr class="bg-dark text-white">
                             <th scope="col">Date</th>
                             <th scope="col">Patient</th>
-                            <th scope="col">Medecin</th>
+                            <th scope="col">Docteur</th>
                             <th scope="col">constante</th>
-                            <th scope="col">Prescription</th>
-                            <th scope="col">Diagnostique</th>
+                            <th scope="col">prescription</th>
+                            <th scope="col">diagnostique</th>
                         </tr>
                     </thead>
                     <tbody>
+                        {% for data in datas %}
                         <tr>
-                            <td>01 Jan 2023</td>
-                            <td>Dr Ali</td>
-                            <td>Jhon Doe</td>
-                            <td>37°</td>
-                            <td>para</td>
-                            <td><a class="btn btn-sm btn-primary" href="">supprimer</a></td>
+                            <td>{{data.date}}</td>
+                            <td>{{data.patient_name}}</td>
+                            <td>{{data.medecin}}</td>
+                            <td>{{data.constante}}</td>
+                            <td>{{data.prescription}}</td>
+                            <td>{{data.diagnostique}}</td>
                         </tr>
-                        <tr>
-                            <td>01 Jan 2023</td>
-                            <td>Dr Ali</td>
-                            <td>Jhon Doe</td>
-                            <td>37°</td>
-                            <td>para</td>
-                            <td><a class="btn btn-sm btn-primary" href="">supprimer</a></td>
-                        </tr>
-                        <tr>
-                            <td>01 Jan 2023</td>
-                            <td>Dr Ali</td>
-                            <td>Jhon Doe</td>
-                            <td>37°</td>
-                            <td>para</td>
-                            <td><a class="btn btn-sm btn-primary" href="">supprimer</a></td>
-                        </tr>
-                        <tr>
-                            <td>01 Jan 2023</td>
-                            <td>Dr Ali</td>
-                            <td>Jhon Doe</td>
-                            <td>37°</td>
-                            <td>para</td>
-                            <td><a class="btn btn-sm btn-primary" href="">supprimer</a></td>
-                        </tr>
-                        <tr>
-                            <td>01 Jan 2023</td>
-                            <td>Dr Ali</td>
-                            <td>Jhon Doe</td>
-                            <td>37°</td>
-                            <td>para</td>
-                            <td><a class="btn btn-sm btn-primary" href="">supprimer</a></td>
-                        </tr>
-                        <tr>
-                            <td>01 Jan 2023</td>
-                            <td>Dr Ali</td>
-                            <td>Jhon Doe</td>
-                            <td>37°</td>
-                            <td>para</td>
-                            <td><a class="btn btn-sm btn-primary" href="">supprimer</a></td>
-                        </tr>
-                        <tr>
-                            <td>01 Jan 2023</td>
-                            <td>Dr Ali</td>
-                            <td>Jhon Doe</td>
-                            <td>37°</td>
-                            <td>para</td>
-                            <td><a class="btn btn-sm btn-primary" href="">supprimer</a></td>
-                        </tr>
-                        <tr>
-                            <td>01 Jan 2023</td>
-                            <td>Dr Ali</td>
-                            <td>Jhon Doe</td>
-                            <td>37°</td>
-                            <td>para</td>
-                            <td><a class="btn btn-sm btn-primary" href="">supprimer</a></td>
-                        </tr>
-                        <tr>
-                            <td>01 Jan 2023</td>
-                            <td>Dr Ali</td>
-                            <td>Jhon Doe</td>
-                            <td>37°</td>
-                            <td>para</td>
-                            <td><a class="btn btn-sm btn-primary" href="">supprimer</a></td>
-                        </tr>
-                        <tr>
-                            <td>01 Jan 2023</td>
-                            <td>Dr Ali</td>
-                            <td>Jhon Doe</td>
-                            <td>37°</td>
-                            <td>para</td>
-                            <td><a class="btn btn-sm btn-primary" href="">supprimer</a></td>
-                        </tr>
-                        <tr>
-                            <td>01 Jan 2023</td>
-                            <td>Dr Ali</td>
-                            <td>Jhon Doe</td>
-                            <td>37°</td>
-                            <td>para</td>
-                            <td><a class="btn btn-sm btn-primary" href="">supprimer</a></td>
-                        </tr>
+                        {% endfor %}
                     </tbody>
                 </table>
             </div>

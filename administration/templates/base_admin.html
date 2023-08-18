@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>ALLAKRO - Admin</title>
+    <title>Allakro-Admin</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -99,6 +99,7 @@
                 "{% url 'dynamism-list' %}": "dynamism",
                 "{% url 'health-data' %}": "health",
                 "{% url 'project-list' %}": "project-tab",
+                "{% url 'markaz' %}": "centre",
                 // ajoutez d'autres correspondances ici
             };
         
@@ -110,6 +111,19 @@
                 }
             }
         });
+    </script>
+    <script>
+        function updateSickResidentsCount() {
+            $.ajax({
+                url: {% url 'notification' %},
+                dataType: 'json',
+                success: function(data) {
+                    $('#notification').text(data.nbre_waiting);
+                }
+            });
+        }
+            updateSickResidentsCount();
+            setInterval(updateSickResidentsCount, 10000);
     </script>
 
 </body>
