@@ -17,7 +17,7 @@
             <h1 class="display-4 text-white animated slideInDown mb-4">Page buisness d'Allakro</h1>
             <nav aria-label="breadcrumb animated slideInDown">
                 <ol class="breadcrumb justify-content-center mb-0">
-                    <li class="breadcrumb-item"><a class="text-white" href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a class="text-white" href="{% url 'prestation-rom' %}">Home</a></li>
                     <li class="breadcrumb-item"><a class="text-white" href="#">Pages</a></li>
                     {% if user.is_authenticated %}<li class="breadcrumb-item"><a class="text-white" href="{% url 'recensement-validation' %}">Admin</a></li>{% endif %}
                     <li class="breadcrumb-item text-primary active" aria-current="page">Service</li>
@@ -50,42 +50,42 @@
 
                             <div class="col-12">
                                 <div class="form-floating">
-                                    <input type="text" name="fullname" class="form-control" placeholder="Nom et Prenom">
+                                    <input type="text" name="fullname" class="form-control" placeholder="Nom et Prenom" required>
                                     <label for="name">Nom et Prenom</label>
                                 </div>
                             </div>
 
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <input type="text" name="services" class="form-control" placeholder="services">
+                                    <input type="text" name="services" class="form-control" placeholder="services" required>
                                     <label for="name">services</label>
                                 </div>
                             </div>
                             
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <input type="text" name="work_space" class="form-control" placeholder="Localisation">
+                                    <input type="text" name="work_space" class="form-control" placeholder="Localisation" required>
                                     <label for="name">Lieu du service</label>
                                 </div>
                             </div>
 
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <input type="text" name="contact" class="form-control" placeholder="contact">
+                                    <input type="text" name="contact" class="form-control" placeholder="contact" required>
                                     <label for="name">contact</label>
                                 </div>
                             </div>
 
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <input type="text" name="payement_code" class="form-control" placeholder="code">
+                                    <input type="text" name="payement_code" class="form-control" placeholder="code" required>
                                     <label for="name">votre code de payement</label>
                                 </div>
                             </div>
 
                             <div class="col-12">
                                 <div class="form-floating">
-                                    <textarea class="form-control" name="specificity" style="height: 200px" placeholder="Votre Spécificité"></textarea>
+                                    <textarea class="form-control" name="specificity" style="height: 200px" placeholder="Votre Spécificité" required></textarea>
                                     {% comment %} <input type="text" name="specificity" class="form-control" placeholder="votre specificité"> {% endcomment %}
                                     <label for="name">votre specificité</label>
                                 </div>

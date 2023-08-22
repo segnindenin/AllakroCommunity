@@ -1,0 +1,43 @@
+{% extends 'base_admin.html' %}
+{% load static %}
+
+
+{% block content %}
+
+    <!-- Recent Sales Start -->
+    <div class="container-fluid pt-4 px-4">
+        <div class="bg-light text-center rounded p-4">
+            <div class="d-flex align-items-center justify-content-between mb-4">
+                <h6 class="mb-0">Liste des Consultations</h6>
+            </div>
+            <div class="table-responsive">
+                <table class="table text-start align-middle table-bordered table-hover mb-0">
+                    <thead>
+                        <tr class="bg-dark text-white">
+                            <th scope="col">nom et Prenom</th>
+                            <th scope="col">code de payement</th>
+                            <th scope="col">date de validation</th>
+                            <th scope="col">statut</th>
+                            {% comment %} <th scope="col">Update</th> {% endcomment %}
+                            {% comment %} <th scope="col">Supprimer</th> {% endcomment %}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for prestation in prestations %}
+                        <tr>
+                            <td>{{prestation.fullname}}</td>
+                            <td>{{prestation.payement_code}}</td>
+                            <td>{{prestation.pub_date}}</td>
+                            <td>{{prestation.statut_recensement}}</td>
+                            {% comment %} <td><a href="{% url 'project-form' %}" class="btn btn-warning">Update</a></td> {% endcomment %}
+                            {% comment %} <td><a href="{% url 'project-form' %}" class="btn btn-warning">Supprimer</a></td> {% endcomment %}
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- Recent Sales End -->
+
+{% endblock %}

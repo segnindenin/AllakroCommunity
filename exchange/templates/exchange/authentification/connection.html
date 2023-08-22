@@ -14,13 +14,6 @@
     <div class="container-fluid page-header mb-5 wow fadeIn" data-wow-delay="0.1s">
         <div class="container text-center">
             <h1 class="display-4 text-white animated slideInDown mb-4">Page de connection</h1>
-            {% comment %} <nav aria-label="breadcrumb animated slideInDown">
-                <ol class="breadcrumb justify-content-center mb-0">
-                    <li class="breadcrumb-item"><a class="text-white" href="#">Home</a></li>
-                    <li class="breadcrumb-item"><a class="text-white" href="#">Pages</a></li>
-                    <li class="breadcrumb-item text-primary active" aria-current="page">Donate</li>
-                </ol>
-            </nav> {% endcomment %}
         </div>
     </div>
     <!-- Page Header End -->
@@ -47,7 +40,7 @@
                                     <input type="password" class="form-control" id="password" name="password" required>
                                 </div>
                                 <button type="submit" class="btn btn-primary">Se connecter</button>
-                                <a href="{% url 'register' %}" class="text">Créer un Compte</a>
+                                {% comment %} <a href="{% url 'register' %}" class="text">Créer un Compte</a> {% endcomment %}
                             </div>
                         </form>
                     </div>

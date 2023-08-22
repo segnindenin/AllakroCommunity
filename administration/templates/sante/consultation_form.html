@@ -21,23 +21,23 @@
                     {% csrf_token %}
                     <div class="mb-3">
                         <label for="Budget" class="form-label">Nom du medecin</label>
-                        <input type="text" name="medecin" class="form-control" id="name">
+                        <input type="text" name="medecin" class="form-control" id="name" required>
                     </div>
                     <div class="mb-3">
                         <label for="Nom" class="form-label">Nom du Patient</label>
-                        <input type="text" name="patient_name" class="form-control" id="name">
+                        <input type="text" name="patient_name" class="form-control" id="name" required>
                     </div>
                     <div class="mb-3">
                         <label for="stade" class="form-label">Contante</label>
-                        <input type="text" name="constante" class="form-control" id="name">
+                        <input type="text" name="constante" class="form-control" id="name" required>
                     </div>
                     <div class="mb-3">
                         <label for="Projet" class="form-label">Diagnostique</label>
-                        <input type="text" name="diagnostique" class="form-control" id="name">
+                        <input type="text" name="diagnostique" class="form-control" id="name" required>
                     </div>
                     <div class="mb-3">
                         <label for="Description" class="form-label">Prescription</label>
-                        <textarea type="text" name="prescription" class="form-control" id="name"></textarea>
+                        <textarea type="text" name="prescription" class="form-control" id="name" required></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">Enregistrer</button>
                 </form>

@@ -1,12 +1,24 @@
 from django.shortcuts import render, redirect
-from exchange.models import Habitant, Recensement
+from django.contrib.auth.decorators import login_required
+from exchange.models import Habitant, Recensement, Service
 from django.contrib import messages
 from administration import models
 from datetime import datetime
 
 
+@login_required(login_url='login')
 def adminHome(request):
-    return render(request, 'home.html')
+    nbre_projet = (models.Projects.objects.all().count()) 
+    nbre_prestataire = (Service.objects.all().count())
+    nbre_news = (Recensement.objects.all().count())
+    nbre_recensement = (Recensement.objects.all().count())
+    return render(request, 'home.html', 
+                {   
+                'nbre_projet':nbre_projet,
+                'nbre_news':nbre_news,
+                'nbre_recensement':nbre_recensement,
+                'nbre_prestataire':nbre_prestataire
+                })
 
 def dynamism(request):
     page_request = request.GET.get('dynamism')
@@ -112,3 +124,7 @@ def healthDataUpdate(request):
         data.save()
         return redirect('home')
     return render(request, 'sante/data_list.html', {'data':data})
+
+def prestationList(request):
+    prestations = Service.objects.filter(statut_recensement='validated') 
+    return render(request, 'service/prestataire.html', context={'prestations': prestations})

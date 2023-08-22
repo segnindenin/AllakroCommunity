@@ -13,17 +13,17 @@ class MyActeurForm(UserCreationForm):
     HabitantID = forms.CharField(required=False)
     class Meta(UserCreationForm.Meta):
         model = get_user_model()
-        fields = ('username', 'statut', 'HabitantID', 'password1', 'password2')
-    def clean_HabitantID(self):
-        HabitantID = self.cleaned_data.get('HabitantID')
-        if HabitantID:
-            try:
-                habitant = models.Habitant.objects.get(id=HabitantID)
-            except models.Habitant.DoesNotExist:
-                raise forms.ValidationError("L'élément lié n'existe pas. Veuillez saisir un élément valide.")
-            return habitant
-        else:
-            return None
+        fields = ('username', 'statut', 'password1', 'password2')
+    # def clean_HabitantID(self):
+    #     HabitantID = self.cleaned_data.get('HabitantID')
+    #     if HabitantID:
+    #         try:
+    #             habitant = models.Habitant.objects.get(id=HabitantID)
+    #         except models.Habitant.DoesNotExist:
+    #             raise forms.ValidationError("L'élément lié n'existe pas. Veuillez saisir un élément valide.")
+    #         return habitant
+    #     else:
+    #         return None
 
 class LoginForm(forms.Form):
     username = forms.CharField(max_length=63, label="Nom d'utilisateur")

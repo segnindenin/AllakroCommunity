@@ -17,7 +17,7 @@
             <h1 class="display-4 text-white animated slideInDown mb-4">Service Communautaire</h1>
             <nav aria-label="breadcrumb animated slideInDown">
                 <ol class="breadcrumb justify-content-center mb-0">
-                    <li class="breadcrumb-item"><a class="text-white" href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a class="text-white" href="{% url 'prestation-rom' %}">Home</a></li>
                     <li class="breadcrumb-item"><a class="text-white" href="#">Pages</a></li>
                     <li class="breadcrumb-item text-primary active" aria-current="page">Admin</li>
                     <li class="breadcrumb-item"><a class="text-white" href="{% url 'prestation-form' %}">Service</a></li>
@@ -65,6 +65,12 @@
                                 <i class="fa fa-arrow-right"></i>
                             </div>
                         </a>
+                        <a class="btn btn-outline-warning px-3" href="{% url 'update-denied' request.id %}">
+                            supprimer
+                            <div class="d-inline-flex btn-sm-square bg-primary text-white rounded-circle ms-2">
+                                <i class="fa fa-arrow-right"></i>
+                            </div>
+                        </a>
                         {% comment %} {% endif %}: {% endcomment %}
                     </div>
                 </div>
@@ -83,6 +89,12 @@
                         {% comment %} {% if user.is_authenticated %} {% endcomment %}
                         <a class="btn btn-outline-primary px-3" href="{% url 'update-validation' request.id %}?services=services">
                             confirmer
+                            <div class="d-inline-flex btn-sm-square bg-primary text-white rounded-circle ms-2">
+                                <i class="fa fa-arrow-right"></i>
+                            </div>
+                        </a>
+                        <a class="btn btn-outline-warning px-3" href="{% url 'update-denied' request.id %}">
+                            supprimer
                             <div class="d-inline-flex btn-sm-square bg-primary text-white rounded-circle ms-2">
                                 <i class="fa fa-arrow-right"></i>
                             </div>

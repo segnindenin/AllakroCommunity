@@ -25,11 +25,11 @@
                 <a id="projects-tab" href="{% url 'projects' %}" class="nav-item nav-link">Projets</a>
                 {% comment %} <a href="pct_about.html" class="nav-item nav-link">Pharmacie et centre de santé</a> {% endcomment %}
                 <a id="health-tab" href="{% url 'health' %}" class="nav-item nav-link">Santé</a>
-                <a id="prestation-form" href="{% url 'prestation-form' %}" class="nav-item nav-link ">Communauté {% if user.is_authenticated %}(<span id="notification">0</span>){% endif %}</a>
+                <a id="prestation-rom" href="{% url 'prestation-rom' %}" class="nav-item nav-link ">Communauté {% if user.is_authenticated %}(<span id="notification">0</span>){% endif %}</a>
                 <div class="nav-item dropdown">
-                    <a id="recensement-form" href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">recensement</a>
+                    <a id="recensement-form" href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Recensement</a>
                     <div class="dropdown-menu m-0">
-                        <a href="{% url 'recensement-page' %}?type_recensement=naissance" class="dropdown-item">Inscription</a>
+                        <a href="{% url 'recensement-page' %}?type_recensement=amenagement" class="dropdown-item">Inscription</a>
                         <a href="{% url 'recensement-page' %}?type_recensement=amenagement" class="dropdown-item">Amenagement</a>
                         <a href="{% url 'recensement-page' %}?type_recensement=demenagement" class="dropdown-item">Demenagement</a>
                         <a href="{% url 'recensement-page' %}?type_recensement=naissance" class="dropdown-item">Naissance</a>
@@ -39,7 +39,7 @@
                 <a id="news-file" href="{% url 'news-file' %}" class="nav-item nav-link">Actualité</a>
             </div>
             <div class="d-none d-lg-flex ms-2">
-                <a class="btn btn-outline-primary py-2 px-3" href="{% url 'logout' %}">
+                <a class="btn btn-outline-primary py-2 px-3" href="{% url 'admin-home' %}">
                     Admin
                     <div class="d-inline-flex btn-sm-square bg-white text-primary rounded-circle ms-2">
                         <i class="fa fa-arrow-right"></i>

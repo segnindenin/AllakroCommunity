@@ -105,7 +105,7 @@ class Acteur(AbstractUser):
         (MEMBER, 'Membres'),
     )
     statut = models.CharField(max_length=30, choices=STATUT_CHOICES, verbose_name='statut')
-    HabitantID = models.OneToOneField(Habitant, null=True, on_delete=models.SET_NULL, related_name='utilisateur')
+    # HabitantID = models.OneToOneField(Habitant, null=True, on_delete=models.SET_NULL, related_name='utilisateur')
     def __str__(self):
         return f'{self.username}'
 

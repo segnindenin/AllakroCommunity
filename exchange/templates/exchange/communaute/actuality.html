@@ -66,7 +66,7 @@
                             </p>
                             {% elif publication.type_recensement == 'demenagement'%}
                             <p>
-                                {{publication.fullname}} tient à vous annoncer qu'il quitte d'Allakro
+                                {{publication.fullname}} tient à vous annoncer qu'il quitte Allakro
                                 pour {{publication.event_space}}.
                             </p>
                         {% endif %}
@@ -89,31 +89,7 @@
                 {% endfor %}
 
 
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="causes-item d-flex flex-column bg-white border-top border-5 border-primary rounded-top overflow-hidden h-100">
-                        <div class="text-center p-4 pt-0">
-                            <div class="d-inline-block bg-primary text-white rounded-bottom fs-5 pb-1 px-3 mb-4">
-                                <small>Pure Water</small>
-                            </div>
-                            <h5 class="mb-3">Ensure Pure Drinking Water</h5>
-                            <p>Tempor erat elitr rebum at clita dolor diam ipsum sit diam amet diam et eos</p>
-                        
-                        </div>
-                        <div class="position-relative mt-auto">
-                            {% comment %} <img class="img-fluid" src="{% static 'img/courses-2.jpg' %}" alt=""> {% endcomment %}
-                            <div class="causes-overlay">
-                                <a class="btn btn-outline-primary" href="">
-                                    Read More
-                                    <div class="d-inline-flex btn-sm-square bg-primary text-white rounded-circle ms-2">
-                                        <i class="fa fa-arrow-right"></i>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                {% for prestation in prestations|dictsortreversed:"pub_date" %}
+                {% comment %} {% for prestation in prestations|dictsortreversed:"pub_date" %}
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
                     <div class="causes-item d-flex flex-column bg-white border-top border-5 border-primary rounded-top overflow-hidden h-100">
                         <div class="text-center p-4 pt-0">
@@ -129,14 +105,13 @@
                             {% if prestation.photo %}
                                 <img class="img-fluid" src="{{ prestation.photo.url }}" alt="{{ photo.title }}" style="max-width: 250px; height: auto;">
                             {% endif %}
-                            {% comment %} <img class="img-fluid" src="{% static 'img/courses-3.jpg' %}" alt=""> {% endcomment %}
                             <div class="causes-overlay">
                                 
                             </div>
                         </div>
                     </div>
                 </div>
-                {% endfor %}
+                {% endfor %} {% endcomment %}
 
                 
             </div>

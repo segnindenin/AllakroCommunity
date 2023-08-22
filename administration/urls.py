@@ -14,4 +14,5 @@ urlpatterns = [
     path('markaz-form', views.markazForm, name="markaz-form"),
     path('file-consultation', views.healthConsultation, name="file-consultation"),
     path('health-data', views.healthData, name="health-data"),
+    path('prestation-list', views.prestationList, name="prestation-list"),
 ]

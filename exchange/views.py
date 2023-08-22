@@ -1,5 +1,6 @@
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login, logout, get_user_model
 from django.contrib.auth.decorators import login_required, permission_required
+from datetime import datetime, timedelta
 from django.conf import settings
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
@@ -16,7 +17,7 @@ def home(request):
 
 def logoutUser(request):
     logout(request)
-    return redirect('login')
+    return redirect('home')
 
 def loginPage(request):
     error_message = ""
@@ -36,23 +37,23 @@ def registerPage(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
-        HabitantID = request.POST.get('HabitantID')
+        # HabitantID = request.POST.get('HabitantID')
         statut = request.POST.get('statut')
-        if not username or not HabitantID or not password:
+        if not username or not password: # or not HabitantID :
             messages.error(request, 'Veuillez remplir tous les champs.')
             # return render(request, 'exchange/authentification/inscription.html')
-        if models.Acteur.objects.filter(username=username).exists():
+        elif models.Acteur.objects.filter(username=username).exists():
             messages.error(request, 'Cet utilisateur existe déjà.')
             # return render(request, 'registration/register.html')
         else:
-            try:
-                habitant = models.Habitant.objects.get(id=HabitantID) 
-                user = models.Acteur.objects.create(username=username, HabitantID=habitant, password=password, statut=statut)
-                messages.success(request, 'Utilisateur enregistré avec succès.')
-                login(request, user)
-                return redirect('home')
-            except models.Habitant.DoesNotExist:
-                messages.error(request, 'Habitant non trouvé.')
+            # try:
+            # habitant = models.Habitant.objects.get(id=HabitantID) 
+            user = get_user_model().objects.create_user(username=username, password=password, statut=statut)
+            messages.success(request, 'Utilisateur enregistré avec succès.')
+            # login(request, user)
+            # return redirect('home')
+            # except models.Habitant.DoesNotExist:
+            #     messages.error(request, 'Habitant non trouvé.')
     return render(request, 'exchange/authentification/inscription.html', context={'choix_statut': choix_statut})
 
 def recensementForm(request):
@@ -82,7 +83,7 @@ def recensementWait(request):
             'prestation_request':prestation_request,
             })
 
-def recensementUpdate(request, id):
+def recensementValidation(request, id):
     services = request.GET.get('services')
     if services:
         demande = models.Service.objects.get(id=id)
@@ -90,6 +91,15 @@ def recensementUpdate(request, id):
         demande = models.Recensement.objects.get(id=id)
     demande.statut_recensement = 'validated'
     demande.save()
+    return redirect('recensement-validation')
+
+def recensementDenied(request, id):
+    services = request.GET.get('services')
+    if services:
+        demande = models.Service.objects.get(id=id)
+    else:
+        demande = models.Recensement.objects.get(id=id)
+    demande.delete()
     return redirect('recensement-validation')
 
 def notification(request):
@@ -113,7 +123,18 @@ def prestationForm(request):
         messages.success(request, "Le formulaire a été soumis avec succès.")
     return render(request, 'exchange/emplois/postulate.html')
 
+def prestationRom(request):
+    today = datetime.now().date()
+    one_week_ago = today - timedelta(days=7)
+    prestations = models.Service.objects.filter(pub_date__gte=one_week_ago)
+    prestations = models.Service.objects.filter(statut_recensement='validated') 
+    return render(request, 'exchange/emplois/prestataire.html', context={'prestations': prestations})
+
 def newsFile(request):
+    today = datetime.now().date()
+    one_week_ago = today - timedelta(days=7)
+    publications = models.Recensement.objects.filter(event_date__gte=one_week_ago)
+    prestations = models.Service.objects.filter(pub_date__gte=one_week_ago)
     publications = models.Recensement.objects.filter(statut_recensement='validated') 
     prestations = models.Service.objects.filter(statut_recensement='validated') 
     return render(request, 'exchange/communaute/actuality.html', 

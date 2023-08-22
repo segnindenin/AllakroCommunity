@@ -22,19 +22,19 @@
                     {% csrf_token %}
                     <div class="mb-3">
                         <label for="Nom" class="form-label">Nom du Projet</label>
-                        <input type="text" name="project_name" class="form-control" id="name">
+                        <input type="text" name="project_name" class="form-control" id="name" required>
                     </div>
                     <div class="mb-3">
                         <label for="Budget" class="form-label">Budget de réalisation</label>
-                        <input type="text" name="budget" class="form-control" id="name">
+                        <input type="text" name="budget" class="form-control" id="name" required>
                     </div>
                     <div class="mb-3">
                         <label for="stade" class="form-label">stade de réalisation</label>
-                        <input type="number" name="state" class="form-control" id="name">
+                        <input type="number" name="state" class="form-control" id="name" required>
                     </div>
                     <div class="mb-3">
                         <label for="Projet" class="form-label">Propiétaire du Projet</label>
-                        <input type="text" name="owner" class="form-control" id="exampleInputPassword1">
+                        <input type="text" name="owner" class="form-control" id="exampleInputPassword1" required>
                     </div>
                     <div class="mb-3">
                         <label for="Description" class="form-label">Description du Projet</label>
