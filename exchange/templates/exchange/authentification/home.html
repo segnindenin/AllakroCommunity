@@ -70,7 +70,8 @@
             <div class="row g-5">
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
                     <div class="position-relative overflow-hidden h-100" style="min-height: 400px;">
-                        <img class="position-absolute w-100 h-100 pt-5 pe-5" src="{% static 'exchange/img/don-epp-allakro1.jpg' %}" alt="" style="object-fit: cover;">
+                        <div><iframe width="560" height="680" src="https://www.youtube.com/embed/QrSN9yZuy-0?si=j_NKVm53NW1UHZAr" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+                        {% comment %} <img class="position-absolute w-100 h-100 pt-5 pe-5" src="{% static 'exchange/img/don-epp-allakro1.jpg' %}" alt="" style="object-fit: cover;"> {% endcomment %}
                     </div>
                 </div>
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
@@ -129,7 +130,7 @@
                         <div class="position-relative mt-auto">
                             <img class="img-fluid" src="{% static 'exchange/img/Aéléchargement (1).jpg' %}" alt="">
                             <div class="causes-overlay">
-                                <a class="btn btn-outline-primary" href="">
+                                <a class="btn btn-outline-primary" href="https://www.fratmat.info/article/82294/10064/autonomisation-des-femmes-la-section-ivoirienne-de-wimn-et-uvci-soutiennent-les-femmes-d-allakro">
                                     En savoir plus
                                     <div class="d-inline-flex btn-sm-square bg-primary text-white rounded-circle ms-2">
                                         <i class="fa fa-arrow-right"></i>
@@ -159,7 +160,7 @@
                         <div class="position-relative mt-auto">
                             <img class="img-fluid" src="{% static 'exchange/img/fete.jpg' %}" alt="">
                             <div class="causes-overlay">
-                                <a class="btn btn-outline-primary" href="">
+                                <a class="btn btn-outline-primary" href="https://afrikipresse.fr/femmes-ebries-eric-taba-celebre-la-fete-des-meres-a-mbadon-village/#:~:text=Top%20Bar%20Navigation-,F%C3%AAte%20des%20m%C3%A8res%20%3A%20Eric%20Taba%20passe%20un%20important%20message%20de,%C3%89bri%C3%A9s%20(C%C3%B4te%20d'Ivoire)&text=Photo%3A%20DR-,Eric%20Taba%20a%20c%C3%A9l%C3%A9br%C3%A9%20la%20f%C3%AAte%20des%20m%C3%A8res%20%C3%A0%20Mbadon,de%20la%20commune%20de%20Cocody.">
                                     En savoir plus
                                     <div class="d-inline-flex btn-sm-square bg-primary text-white rounded-circle ms-2">
                                         <i class="fa fa-arrow-right"></i>
@@ -172,7 +173,7 @@
                     
                 </div>
             </div>
-            <a href="" class="btn btn-outline-primary ms-auto">voir plus</a>
+            {% comment %} <a href="" class="btn btn-outline-primary ms-auto">voir plus</a> {% endcomment %}
             
         </div> 
     </div>
@@ -184,31 +185,43 @@
     <div class="container-xxl py-5">
         <div class="container">
             <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
-                <div class="d-inline-block rounded-pill bg-secondary text-primary py-1 px-3 mb-3">Ce que nous vendons</div>
-                <h1 class="display-6 mb-5">Les articles</h1>
+                <!-- <div class="d-inline-block rounded-pill bg-secondary text-primary py-1 px-3 mb-3">What We Do</div> -->
+                <h1 class="display-6 mb-5">Vente des meubles de charme patinés en bois</h1>
             </div>
             <div class="row g-4 justify-content-center">
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                     <div class="service-item bg-white text-center h-100 p-4 p-xl-5">
                         <img class="img-fluid mb-4" src="{% static 'exchange/img/15932513-jouet-panier-tissé-à-partir-de-tiges-de-saule.webp' %}" alt="">
-                        <h4 class="mb-3">Panier tisser a partir de tige de saule
-                        </h4>
-                        
-                        <a class="btn btn-outline-primary px-3" href="">
-                                En savoir plus
+                        <h4 class="mb-3">Panier tisser a partir de tige de saule.</h4>
+                        <p class="mb-4"></p>
+                        <a class="btn btn-outline-primary px-3" href="service.html">
+                        en savoir plus
                             <div class="d-inline-flex btn-sm-square bg-primary text-white rounded-circle ms-2">
                                 <i class="fa fa-arrow-right"></i>
                             </div>
                         </a>
                     </div>
                 </div>
-
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                     <div class="service-item bg-white text-center h-100 p-4 p-xl-5">
-                        <img class="img-fluid mb-4" src="{% static 'exchange/img/bois.jpg' %}" alt="">
-                        <h4 class="mb-3">Habit pour homme pull sans chapeau</h4>
-                        <a class="btn btn-outline-primary px-3" href="">
-                            En savoir plus
+                        <img class="img-fluid mb-4" src="{% static 'exchange/img/yy.jpg' %}" alt="">
+                        <h4 class="mb-3">  Découvrez une vaste collection de mobiliers d’exception..</h4>
+                        <!-- <p class="mb-4">Tempor ut dolore lorem kasd vero ipsum sit eirmod sit. Ipsum diam justo sed vero dolor duo.</p> -->
+                        <a class="btn btn-outline-primary px-3" href="service.html">
+                            en savoir plus
+                            <div class="d-inline-flex btn-sm-square bg-primary text-white rounded-circle ms-2">
+                                <i class="fa fa-arrow-right"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="service-item bg-white text-center h-100 p-4 p-xl-5 mt-2">
+                        <img class="img-fluid mb-4" src="{% static 'exchange/img/tteéléchargement.jpg' %}" alt="">
+                        <h4 class="mb-3"> Meubles non-peints (chaises, tables et tabourets)</h4>
+                        <!-- <p class="mb-4">Tempor ut dolore lorem kasd vero ipsum sit eirmod sit. Ipsum diam justo sed vero dolor duo.</p> -->
+                        <a class="btn btn-outline-primary px-3" href="service.html">
+                           en savoir plus
                             <div class="d-inline-flex btn-sm-square bg-primary text-white rounded-circle ms-2">
                                 <i class="fa fa-arrow-right"></i>
                             </div>
@@ -226,7 +239,7 @@
     <div class="container-xxl py-5" >
         <div class="container">
             <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
-                <div class="d-inline-block rounded-pill bg-secondary text-primary py-1 px-3 mb-3">Team Members</div>
+                <div class="d-inline-block rounded-pill bg-secondary text-primary py-1 px-3 mb-3">Team Health</div>
                 <h1 class="display-6 mb-5">services sante</h1>
             </div>
             <div class="row g-4">
@@ -238,11 +251,11 @@
                         <div class="team-text bg-light text-center p-5">
                             <h5>MATERNITE</h5>
                             <p class="text-primary">la maternité d'llakro au service de la santé de ces populations</p>
-                            <div class="team-social text-center">
+                            {% comment %} <div class="team-social text-center">
                                 <a class="btn btn-square" href=""><i class="fab fa-facebook-f"></i></a>
                                 <a class="btn btn-square" href=""><i class="fab fa-twitter"></i></a>
                                 <a class="btn btn-square" href=""><i class="fab fa-instagram"></i></a>
-                            </div>
+                            </div> {% endcomment %}
                         </div>
                     </div>
                 </div>
@@ -254,11 +267,11 @@
                         <div class="team-text bg-light text-center p-4">
                             <h5>PEDIATRIE</h5>
                             <p class="text-primary">La pédiatrie est une spécialité médicale qui se consacre à l'enfant, depuis la vie intra-utérine (en lien avec l'obstétrique ) jusqu'à la fin de l'adolescence</p>
-                            <div class="team-social text-center">
+                            {% comment %} <div class="team-social text-center">
                                 <a class="btn btn-square" href=""><i class="fab fa-facebook-f"></i></a>
                                 <a class="btn btn-square" href=""><i class="fab fa-twitter"></i></a>
                                 <a class="btn btn-square" href=""><i class="fab fa-instagram"></i></a>
-                            </div>
+                            </div> {% endcomment %}
                         </div>
                     </div>
                 </div>
@@ -270,11 +283,11 @@
                         <div class="team-text bg-light text-center p-4">
                             <h5>CARDIOLOGIE</h5>
                             <p class="text-primary">pas encors disponible</p>
-                            <div class="team-social text-center">
+                            {% comment %} <div class="team-social text-center">
                                 <a class="btn btn-square" href=""><i class="fab fa-facebook-f"></i></a>
                                 <a class="btn btn-square" href=""><i class="fab fa-twitter"></i></a>
                                 <a class="btn btn-square" href=""><i class="fab fa-instagram"></i></a>
-                            </div>
+                            </div> {% endcomment %}
                         </div>
                     </div>
                 </div>
@@ -286,11 +299,11 @@
                         <div class="team-text bg-light text-center p-4">
                             <h5>GYNECOLOGIE</h5>
                             <p class="text-primary">pas encors disponible</p>
-                            <div class="team-social text-center">
+                            {% comment %} <div class="team-social text-center">
                                 <a class="btn btn-square" href=""><i class="fab fa-facebook-f"></i></a>
                                 <a class="btn btn-square" href=""><i class="fab fa-twitter"></i></a>
                                 <a class="btn btn-square" href=""><i class="fab fa-instagram"></i></a>
-                            </div>
+                            </div> {% endcomment %}
                         </div>
                     </div>
                 </div>
@@ -298,5 +311,8 @@
         </div>
     </div>
     <!-- Team End -->
+    <div>
+        <iframe src="https://www.google.com/maps/d/embed?mid=1uUPvKYjtlUad3v2mHWbK9w28Jd_nHOOT&ehbc=2E312F" width="100%" height="480"></iframe>
+    </div>
 
 {% endblock %}

@@ -31,7 +31,8 @@
     <div class="container-xxl bg-light my-5 py-5">
         <div class="container py-5">
             <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
-                <div class="d-inline-block rounded-pill bg-secondary text-primary py-1 px-3 mb-3">News</div>
+                <a class="d-inline-block rounded-pill bg-secondary text-primary py-1 px-3 mb-3" href="{% url 'news-file' %}">News</a>
+                <a class="d-inline-block rounded-pill bg-secondary text-primary py-1 px-3 mb-3" href="{% url 'prestation-form' %}">Ajouter Un Article</a>
                 {% if user.is_authenticated %}
                 <div class="d-inline-block rounded-pill bg-secondary text-primary py-1 px-3 mb-3">Faire une Publication</div>
                 {% endif %}
@@ -67,6 +68,68 @@
                 </div>
                 {% endfor %}
 
+                {% comment %} //des trucs à vendre ! {% endcomment %}
+                <div class="container-xxl py-5">
+                    <div class="container">
+                        <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+                            <h1 class="display-6 mb-5">Vente des articles</h1>
+                             {% comment %} <a class="d-inline-block rounded-pill bg-secondary text-primary py-1 px-3 mb-3" href="{% url 'prestation-form' %}">Ajouter Un Article</a> {% endcomment %}
+                        </div>
+                        <div class="row g-4 justify-content-center">
+                            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                                <div class="service-item bg-white text-center h-100 p-4 p-xl-5">
+                                    <img class="img-fluid mb-4" src="{% static 'exchange/img/A G8AMBIANCESAMGALLICIANENFILADE2P3TGMTABLERde4Pjpg_595e5fc66dd0a.jpg' %}" alt="">
+                                    <h4 class="mb-3">Quoi de mieux que du mobilier en chêne massif pour habiller votre intérieur?.</h4>
+                                    <p class="mb-4"></p>
+                                    <p>prix: 185000  FCFA</p>
+                                    <a class="btn btn-outline-primary px-3">
+                                        numero du vendeur  04559721
+                                         
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                                <div class="service-item bg-white text-center h-100 p-4 p-xl-5">
+                                    <img class="img-fluid mb-4" src="{% static 'exchange/img/yy.jpg' %}" alt="">
+                                    <h4 class="mb-3"> Maison Etienne vous propose la vente de meubles anciens, découvrez une  vaste collection de mobiliers d’exception..</h4>
+                                    <!-- <p class="mb-4">Tempor ut dolore lorem kasd vero ipsum sit eirmod sit. Ipsum diam justo sed vero dolor duo.</p> -->
+                                    <p>prix: 105000  FCFA</p>
+                                    <a class="btn btn-outline-primary px-3" href="">
+                                        numero du vendeur  04559721
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                                <div class="service-item bg-white text-center h-100 p-4 p-xl-5 mt-2">
+                                    <img class="img-fluid mb-4" src="{% static 'exchange/img/wtéléchargement.jpg' %}" alt="">
+                                    <h4 class="mb-3">Vente d'article divers</h4>
+                                     <!-- <p class="mb-4">Tempor ut dolore lorem kasd vero ipsum sit eirmod sit. Ipsum diam justo sed vero dolor duo.</p> -->
+                                     <p>prix: 10000  FCFA / l'unite</p>
+                                     <a class="btn btn-outline-primary px-3 mt-5" href="">
+                                        numero du vendeur  04559721
+                                       
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                                <div class="service-item bg-white text-center h-100 p-4 p-xl-5 mt-2">
+                                    <img class="img-fluid mb-4" src="{% static 'exchange/img/ctéléchargement.jpg' %}" alt="">
+                                    <h4 class="mb-3">Vente d'article de sport</h4>
+                                    <!-- <p class="mb-4">Tempor ut dolore lorem kasd vero ipsum sit eirmod sit. Ipsum diam justo sed vero dolor duo.</p> -->
+                                   
+                                    <p>prix: 10000  FCFA les maillots</p>
+                                    <p>prix: 15000  FCFA les chaussures</p>
+            
+                                    <p class="btn btn-outline-primary px-3 mt-5">
+                                        numero du vendeur  04559721
+                                        
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                   
+                </div>
                 
             </div>
         </div>

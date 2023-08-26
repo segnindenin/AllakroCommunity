@@ -124,17 +124,21 @@ def prestationForm(request):
     return render(request, 'exchange/emplois/postulate.html')
 
 def prestationRom(request):
+    #pour les 7jrs
     today = datetime.now().date()
     one_week_ago = today - timedelta(days=7)
     prestations = models.Service.objects.filter(pub_date__gte=one_week_ago)
+    #pour les 7jrs
     prestations = models.Service.objects.filter(statut_recensement='validated') 
     return render(request, 'exchange/emplois/prestataire.html', context={'prestations': prestations})
 
 def newsFile(request):
+    #pour les 7jrs
     today = datetime.now().date()
     one_week_ago = today - timedelta(days=7)
     publications = models.Recensement.objects.filter(event_date__gte=one_week_ago)
     prestations = models.Service.objects.filter(pub_date__gte=one_week_ago)
+    #pour les 7jrs
     publications = models.Recensement.objects.filter(statut_recensement='validated') 
     prestations = models.Service.objects.filter(statut_recensement='validated') 
     return render(request, 'exchange/communaute/actuality.html', 
