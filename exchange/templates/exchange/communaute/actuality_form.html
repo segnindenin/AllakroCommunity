@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+    <!-- Spinner Start -->
+    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" role="status"></div>
+    </div>
+    <!-- Spinner End -->
+
+
+    <!-- Page Header Start -->
+    {% comment %} <div class="container-fluid page-header mb-5 wow fadeIn" data-wow-delay="0.1s">
+        <div class="container text-center">
+            <h1 class="display-4 text-white animated slideInDown mb-4">inscrivez-vous en quelque clic et devez membre</h1>
+        </div>
+    </div> {% endcomment %}
+    <!-- Page Header End -->
+
+
+    <!-- Donate Start -->
+    <div class="container-fluid py-5">
+        <div class="container">
+            <div class="row g-5 align-items-center justify-content-center">
+                <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
+
+                    {% if messages %}
+                        <ul class="text-danger">
+                            {% for message in messages %}
+                                <li{% if message.tags %} class="text-danger"{% endif %}>{{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+
+                    {% if error_message %}
+                    <p class="text-danger">{{ error_message }}</p>
+                    {% endif %}
+                    
+                    <div class="h-100 bg-secondary p-5">
+                        <form method="post" action="">
+                            {% csrf_token %}
+                            <div class="row g-3">
+                                <div class="mb-3">
+                                    <label for="username" class="form-label">Objet</label>
+                                    <input type="text" class="form-control" id="objet" name="objet" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="text" class="form-label">Publication</label>
+                                    <textarea class="form-control" name="publication" style="height: 200px" placeholder="Votre Spécificité" required></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Terminer</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Donate End -->
+        
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+{% if messages %}
+    <ul class="text-danger">
+        {% for message in messages %}
+            <li{% if message.tags %} class="text-danger"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+<div class="container">
+    <div class="row justify-content-center align-items-center min-vh-100">
+        <div class="col-sm-12 col-xl-6">
+            <div class="bg-light rounded p-4">
+                <h6 class="mb-4">saisir votre code de payement pour validé la mise à jour</h6>
+                <form class="form" action="" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="Nom" class="form-label">Votre Code de Payement</label>
+                        <input type="text" name="payement_code" class="form-control" id="name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="Nom" class="form-label">votre Nom</label>
+                        <input type="text" name="fullname" value="{{ prestation.fullname }}" class="form-control" id="name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="Budget" class="form-label">Services</label>
+                        <input type="text" name="services" value="{{ prestation.services }}" class="form-control" id="name" required>
+                    </div>
+                    {% comment %} les modifications de photos ne sont pas encore disponible {% endcomment %}
+                    {% comment %} <div class="mb-3">
+                        <label for="stade" class="form-label">stade de réalisation</label>
+                        <input type="number" name="state" value="{{ prestation.photo }}" class="form-control" id="name" required>
+                    </div> {% endcomment %}
+                    <div class="mb-3">
+                        <label for="Projet" class="form-label">Contact</label>
+                        <input type="text" name="contact" value="{{ prestation.contact }}" class="form-control" id="exampleInputPassword1" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="Projet" class="form-label">Lieu de Travail</label>
+                        <input type="text" name="work_space" value="{{ prestation.work_space }}" class="form-control" id="exampleInputPassword1" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="Description" class="form-label">Votre Specificité</label>
+                        <textarea type="text" name="specificity" class="form-control" id="name" required>{{ prestation.specificity }}</textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Enregistrer</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

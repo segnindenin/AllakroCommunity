@@ -87,6 +87,7 @@ def recensementValidation(request, id):
     services = request.GET.get('services')
     if services:
         demande = models.Service.objects.get(id=id)
+        demande.pub_date=datetime.now(), 
     else:
         demande = models.Recensement.objects.get(id=id)
     demande.statut_recensement = 'validated'
@@ -127,24 +128,54 @@ def prestationRom(request):
     #pour les 7jrs
     today = datetime.now().date()
     one_week_ago = today - timedelta(days=7)
-    prestations = models.Service.objects.filter(pub_date__gte=one_week_ago)
+    prestations = models.Service.objects.filter(pub_date__gte=one_week_ago, statut_recensement='validated')
     #pour les 7jrs
     prestations = models.Service.objects.filter(statut_recensement='validated') 
     return render(request, 'exchange/emplois/prestataire.html', context={'prestations': prestations})
 
+def prestationUpdate(request, id):
+    prestation = models.Service.objects.get(id=id)
+    if request.method == 'POST':
+        if request.POST.get('payement_code') == prestation.payement_code:
+            prestation.fullname = request.POST.get('fullname')
+            prestation.services = request.POST.get('services')
+            prestation.specificity = request.POST.get('specificity')
+            prestation.contact = request.POST.get('contact')
+            # prestation.photo = request.POST.get('photo')
+            prestation.work_space = request.POST.get('work_space')
+            prestation.save()
+            return redirect('prestation-rom')
+        else:
+            messages.error(request, 'Ce code est incorrecte.')
+    context = {'prestation': prestation}
+    return render(request, 'exchange/emplois/prestataire_update.html', context)
+
 def newsFile(request):
     #pour les 7jrs
-    today = datetime.now().date()
-    one_week_ago = today - timedelta(days=7)
-    publications = models.Recensement.objects.filter(event_date__gte=one_week_ago)
-    prestations = models.Service.objects.filter(pub_date__gte=one_week_ago)
-    #pour les 7jrs
+    # today = datetime.now().date()
+    # one_week_ago = today - timedelta(days=7)
+    # publications = models.Recensement.objects.filter(event_date__gte=one_week_ago, statut_recensement='validated')
+    # prestations = models.Service.objects.filter(pub_date__gte=one_week_ago, statut_recensement='validated')
+    # #pour les 7jrs
     publications = models.Recensement.objects.filter(statut_recensement='validated') 
     prestations = models.Service.objects.filter(statut_recensement='validated') 
+    chef_infos = models.Activity.objects.all() 
     return render(request, 'exchange/communaute/actuality.html', 
                   context={
                     'publications': publications,
+                    'chef_infos': chef_infos,
                     'prestations':prestations})
+
+
+def newsFileForm(request):
+    if request.method == 'POST':
+        new_File = models.Activity.objects.create(
+            objet=request.POST['objet'], 
+            publication=request.POST['publication'],
+            )
+        return redirect('news-file')
+    return render(request, 'exchange/communaute/actuality_form.html')
+
 
 def healthRoom(request):
     pjts = models.Projet.objects.all()

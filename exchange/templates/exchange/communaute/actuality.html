@@ -34,7 +34,7 @@
             <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
                 <div class="d-inline-block rounded-pill bg-secondary text-primary py-1 px-3 mb-3">News</div>
                 {% if user.is_authenticated %}
-                <div class="d-inline-block rounded-pill bg-secondary text-primary py-1 px-3 mb-3">Faire une Publication</div>
+                <a class="d-inline-block rounded-pill bg-secondary text-primary py-1 px-3 mb-3" href="{% url 'news-file-form' %}">Faire Une Publication</a>
                 {% endif %}
                 <h1 class="display-6 mb-5">Tous les news du Village</h1>
             </div>
@@ -84,6 +84,20 @@
                             </div>
                         </div> {% endcomment %}
 
+                    </div>
+                </div>
+                {% endfor %}
+
+                {% for chef_info in chef_infos|dictsortreversed:"datetime" %}
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="causes-item d-flex flex-column bg-white border-top border-5 border-primary rounded-top overflow-hidden h-100">
+                        <div class="text-center p-4 pt-0">
+                            <div class="d-inline-block bg-primary text-white rounded-bottom fs-5 pb-1 px-3 mb-4">
+                                <small>Chefferie</small>
+                            </div>
+                            <h5 class="mb-3">{{chef_info.objet}}</h5>
+                            <p>{{chef_info.publication}}s</p>
+                        </div>
                     </div>
                 </div>
                 {% endfor %}

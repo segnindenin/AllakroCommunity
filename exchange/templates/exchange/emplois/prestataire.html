@@ -34,7 +34,7 @@
                 <a class="d-inline-block rounded-pill bg-secondary text-primary py-1 px-3 mb-3" href="{% url 'news-file' %}">News</a>
                 <a class="d-inline-block rounded-pill bg-secondary text-primary py-1 px-3 mb-3" href="{% url 'prestation-form' %}">Ajouter Un Article</a>
                 {% if user.is_authenticated %}
-                <div class="d-inline-block rounded-pill bg-secondary text-primary py-1 px-3 mb-3">Faire une Publication</div>
+                <a class="d-inline-block rounded-pill bg-secondary text-primary py-1 px-3 mb-3" href="{% url 'news-file-form' %}">Faire Une Publication</a>
                 {% endif %}
                 <h1 class="display-6 mb-5">Services au Village</h1>
             </div>
@@ -49,6 +49,7 @@
                         <div class="text-center p-4 pt-0">
                             <div class="d-inline-block bg-primary text-white rounded-bottom fs-5 pb-1 px-3 mb-4">
                                 <small>{{prestation.services}}</small>
+                                
                             </div>
                             <h5 class="mb-3">{{prestation.fullname}}</h5>
                             <p>{{prestation.contact}}</p>
@@ -61,7 +62,9 @@
                             {% endif %}
                             {% comment %} <img class="img-fluid" src="{% static 'img/courses-3.jpg' %}" alt=""> {% endcomment %}
                             <div class="causes-overlay">
-                                
+                                <a class="btn btn-outline-primary" href="{% url 'prestation-update' prestation.id %}">
+                                    Mofifier avec un code
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -84,7 +87,6 @@
                                     <p>prix: 185000  FCFA</p>
                                     <a class="btn btn-outline-primary px-3">
                                         numero du vendeur  04559721
-                                         
                                     </a>
                                 </div>
                             </div>
@@ -100,7 +102,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                                <div class="service-item bg-white text-center h-100 p-4 p-xl-5 mt-2">
+                                <div class="service-item bg-white text-center h-100 p-4 p-xl-5">
                                     <img class="img-fluid mb-4" src="{% static 'exchange/img/wtéléchargement.jpg' %}" alt="">
                                     <h4 class="mb-3">Vente d'article divers</h4>
                                      <!-- <p class="mb-4">Tempor ut dolore lorem kasd vero ipsum sit eirmod sit. Ipsum diam justo sed vero dolor duo.</p> -->
@@ -116,13 +118,10 @@
                                     <img class="img-fluid mb-4" src="{% static 'exchange/img/ctéléchargement.jpg' %}" alt="">
                                     <h4 class="mb-3">Vente d'article de sport</h4>
                                     <!-- <p class="mb-4">Tempor ut dolore lorem kasd vero ipsum sit eirmod sit. Ipsum diam justo sed vero dolor duo.</p> -->
-                                   
                                     <p>prix: 10000  FCFA les maillots</p>
                                     <p>prix: 15000  FCFA les chaussures</p>
-            
                                     <p class="btn btn-outline-primary px-3 mt-5">
                                         numero du vendeur  04559721
-                                        
                                     </p>
                                 </div>
                             </div>

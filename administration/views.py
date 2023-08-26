@@ -88,7 +88,7 @@ def markazForm(request):
 def markazUpdate(request, id):
     markaz = models.Markaz.objects.get(id=id)
     if request.method == 'POST':
-        topic_name = request.POST.get('topic')
+        # topic_name = request.POST.get('topic')
         markaz.name = request.POST.get('name')
         markaz.topic = request.POST.get('name')
         markaz.description = request.POST.get('description')
